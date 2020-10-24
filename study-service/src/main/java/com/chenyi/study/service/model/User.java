@@ -8,7 +8,7 @@ import lombok.Data;
  * @description
  */
 @Data
-class User {
+public class User {
     private Long id;
     private String userName;
     private String telePhone;

@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author BG344144
  */
 @SpringBootApplication
-@MapperScan(basePackages = {"com.chenyi.study.**.mapper"})
+//@MapperScan(basePackages = {"com.chenyi.study.**.mapper"})
 public class StudyUtilApplication {
 
     public static void main(String[] args) {
