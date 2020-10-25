@@ -7,7 +7,6 @@ import java.time.LocalDate;
 
 @Data
 public class BaseModel implements Serializable {
-    private static final long serialVersionUID = 6510732474478328666L;
     private Long id;
     private String createName;
     private Long createId;
