@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chenyi.study.mapper.UserMapper">
-    <resultMap id="BaseResultMap" type="com.chenyi.study.model.User">
+    <resultMap id="BaseResultMap" type="com.chenyi.study.model.user.User">
         <!--@mbg.generated-->
         <!--@Table `user`-->
         <id column="id" jdbcType="BIGINT" property="id"/>
@@ -33,7 +33,7 @@
         from `user`
         where id = #{id,jdbcType=BIGINT}
     </delete>
-    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.chenyi.study.model.User"
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.chenyi.study.model.user.User"
             useGeneratedKeys="true">
         <!--@mbg.generated-->
         insert into `user`
@@ -51,7 +51,7 @@
                 #{updateName,jdbcType=VARCHAR}, #{updateId,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP},
                 #{userName,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, #{loginName,jdbcType=VARCHAR})
     </insert>
-    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.chenyi.study.model.User"
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.chenyi.study.model.user.User"
             useGeneratedKeys="true">
         <!--@mbg.generated-->
         insert into `user`
@@ -114,7 +114,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.chenyi.study.model.User">
+    <update id="updateByPrimaryKeySelective" parameterType="com.chenyi.study.model.user.User">
         <!--@mbg.generated-->
         update `user`
         <set>
@@ -148,7 +148,7 @@
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.chenyi.study.model.User">
+    <update id="updateByPrimaryKey" parameterType="com.chenyi.study.model.user.User">
         <!--@mbg.generated-->
         update `user`
         set create_name = #{createName,jdbcType=VARCHAR},
@@ -304,7 +304,7 @@
              #{item.userName,jdbcType=VARCHAR}, #{item.telephone,jdbcType=VARCHAR}, #{item.loginName,jdbcType=VARCHAR})
         </foreach>
     </insert>
-    <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.chenyi.study.model.User"
+    <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.chenyi.study.model.user.User"
             useGeneratedKeys="true">
         <!--@mbg.generated-->
         insert into `user`
@@ -353,7 +353,7 @@
             login_name  = #{loginName,jdbcType=VARCHAR},
         </trim>
     </insert>
-    <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.chenyi.study.model.User"
+    <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.chenyi.study.model.user.User"
             useGeneratedKeys="true">
         <!--@mbg.generated-->
         insert into `user`

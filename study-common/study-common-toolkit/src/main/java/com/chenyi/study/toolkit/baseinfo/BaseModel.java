@@ -14,5 +14,6 @@ public class BaseModel implements Serializable {
     private String updateName;
     private Long updateId;
     private LocalDate updateTime;
+    private Integer lockVersion;
 
 }
