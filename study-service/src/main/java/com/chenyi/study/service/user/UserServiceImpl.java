@@ -14,6 +14,11 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
+    public void insert(User user) {
+        userMapper.insert(user);
+    }
+
+    @Override
     public int updateBatch(List<User> list) {
         return userMapper.updateBatch(list);
     }
@@ -36,6 +41,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public int insertOrUpdateSelective(User record) {
         return userMapper.insertOrUpdateSelective(record);
+    }
+
+    @Override
+    public User findByLoginName(String loginName) {
+        return userMapper.findByLoginName(loginName);
     }
 
 }

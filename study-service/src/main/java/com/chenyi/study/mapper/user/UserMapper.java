@@ -17,4 +17,8 @@ public interface UserMapper extends tk.mybatis.mapper.common.Mapper<User> {
     int insertOrUpdate(User record);
 
     int insertOrUpdateSelective(User record);
+
+    User findByLoginName(@Param("loginName") String loginName);
+
+
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.chenyi.study.mapper.user.UserMapper">
-  <resultMap id="BaseResultMap" type="com.chenyi.study.model.user.User">
-    <!--@mbg.generated generated on Fri Oct 30 00:52:50 CST 2020.-->
-    <!--@Table study_user-->
+<mapper namespace="com.chenyi.study.mapper.user.UserGroupMapper">
+  <resultMap id="BaseResultMap" type="com.chenyi.study.model.user.UserGroup">
+    <!--@mbg.generated-->
+    <!--@Table study_user_group-->
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="create_name" jdbcType="VARCHAR" property="createName" />
     <result column="create_id" jdbcType="BIGINT" property="createId" />
@@ -12,25 +12,172 @@
     <result column="update_id" jdbcType="BIGINT" property="updateId" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="lock_version" jdbcType="INTEGER" property="lockVersion" />
-    <result column="user_name" jdbcType="VARCHAR" property="userName" />
-    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
-    <result column="login_name" jdbcType="VARCHAR" property="loginName" />
-    <result column="email_address" jdbcType="VARCHAR" property="emailAddress" />
-    <result column="user_type" jdbcType="VARCHAR" property="userType" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="salt" jdbcType="VARCHAR" property="salt" />
-    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="user_group_name" jdbcType="VARCHAR" property="userGroupName" />
+    <result column="user_group_code" jdbcType="VARCHAR" property="userGroupCode" />
     <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="principal" jdbcType="VARCHAR" property="principal" />
   </resultMap>
   <sql id="Base_Column_List">
-    <!--@mbg.generated generated on Fri Oct 30 00:52:50 CST 2020.-->
+    <!--@mbg.generated-->
     id, create_name, create_id, create_time, update_name, update_id, update_time, lock_version, 
-    user_name, telephone, login_name, email_address, user_type, `password`, salt, `status`, 
-    description
+    user_group_name, user_group_code, description, principal
   </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from study_user_group
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from study_user_group
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.chenyi.study.model.user.UserGroup" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into study_user_group (create_name, create_id, create_time, 
+      update_name, update_id, update_time, 
+      lock_version, user_group_name, user_group_code, 
+      description, principal)
+    values (#{createName,jdbcType=VARCHAR}, #{createId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateName,jdbcType=VARCHAR}, #{updateId,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{lockVersion,jdbcType=INTEGER}, #{userGroupName,jdbcType=VARCHAR}, #{userGroupCode,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{principal,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.chenyi.study.model.user.UserGroup" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into study_user_group
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="createName != null and createName != ''">
+        create_name,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateName != null and updateName != ''">
+        update_name,
+      </if>
+      <if test="updateId != null">
+        update_id,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="lockVersion != null">
+        lock_version,
+      </if>
+      <if test="userGroupName != null and userGroupName != ''">
+        user_group_name,
+      </if>
+      <if test="userGroupCode != null and userGroupCode != ''">
+        user_group_code,
+      </if>
+      <if test="description != null and description != ''">
+        description,
+      </if>
+      <if test="principal != null and principal != ''">
+        principal,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="createName != null and createName != ''">
+        #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateName != null and updateName != ''">
+        #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateId != null">
+        #{updateId,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lockVersion != null">
+        #{lockVersion,jdbcType=INTEGER},
+      </if>
+      <if test="userGroupName != null and userGroupName != ''">
+        #{userGroupName,jdbcType=VARCHAR},
+      </if>
+      <if test="userGroupCode != null and userGroupCode != ''">
+        #{userGroupCode,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null and description != ''">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="principal != null and principal != ''">
+        #{principal,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chenyi.study.model.user.UserGroup">
+    <!--@mbg.generated-->
+    update study_user_group
+    <set>
+      <if test="createName != null and createName != ''">
+        create_name = #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateName != null and updateName != ''">
+        update_name = #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateId != null">
+        update_id = #{updateId,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lockVersion != null">
+        lock_version = #{lockVersion,jdbcType=INTEGER},
+      </if>
+      <if test="userGroupName != null and userGroupName != ''">
+        user_group_name = #{userGroupName,jdbcType=VARCHAR},
+      </if>
+      <if test="userGroupCode != null and userGroupCode != ''">
+        user_group_code = #{userGroupCode,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null and description != ''">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="principal != null and principal != ''">
+        principal = #{principal,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chenyi.study.model.user.UserGroup">
+    <!--@mbg.generated-->
+    update study_user_group
+    set create_name = #{createName,jdbcType=VARCHAR},
+      create_id = #{createId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_name = #{updateName,jdbcType=VARCHAR},
+      update_id = #{updateId,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      lock_version = #{lockVersion,jdbcType=INTEGER},
+      user_group_name = #{userGroupName,jdbcType=VARCHAR},
+      user_group_code = #{userGroupCode,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      principal = #{principal,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
   <update id="updateBatch" parameterType="java.util.List">
-    <!--@mbg.generated generated on Fri Oct 30 00:52:50 CST 2020.-->
-    update study_user
+    <!--@mbg.generated-->
+    update study_user_group
     <trim prefix="set" suffixOverrides=",">
       <trim prefix="create_name = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
@@ -67,49 +214,24 @@
           when id = #{item.id,jdbcType=BIGINT} then #{item.lockVersion,jdbcType=INTEGER}
         </foreach>
       </trim>
-      <trim prefix="user_name = case" suffix="end,">
+      <trim prefix="user_group_name = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.userName,jdbcType=VARCHAR}
+          when id = #{item.id,jdbcType=BIGINT} then #{item.userGroupName,jdbcType=VARCHAR}
         </foreach>
       </trim>
-      <trim prefix="telephone = case" suffix="end,">
+      <trim prefix="user_group_code = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.telephone,jdbcType=VARCHAR}
-        </foreach>
-      </trim>
-      <trim prefix="login_name = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.loginName,jdbcType=VARCHAR}
-        </foreach>
-      </trim>
-      <trim prefix="email_address = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.emailAddress,jdbcType=VARCHAR}
-        </foreach>
-      </trim>
-      <trim prefix="user_type = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.userType,jdbcType=VARCHAR}
-        </foreach>
-      </trim>
-      <trim prefix="`password` = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.password,jdbcType=VARCHAR}
-        </foreach>
-      </trim>
-      <trim prefix="salt = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.salt,jdbcType=VARCHAR}
-        </foreach>
-      </trim>
-      <trim prefix="`status` = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.status,jdbcType=VARCHAR}
+          when id = #{item.id,jdbcType=BIGINT} then #{item.userGroupCode,jdbcType=VARCHAR}
         </foreach>
       </trim>
       <trim prefix="description = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
           when id = #{item.id,jdbcType=BIGINT} then #{item.description,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="principal = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.principal,jdbcType=VARCHAR}
         </foreach>
       </trim>
     </trim>
@@ -119,8 +241,8 @@
     </foreach>
   </update>
   <update id="updateBatchSelective" parameterType="java.util.List">
-    <!--@mbg.generated generated on Fri Oct 30 00:52:50 CST 2020.-->
-    update study_user
+    <!--@mbg.generated-->
+    update study_user_group
     <trim prefix="set" suffixOverrides=",">
       <trim prefix="create_name = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
@@ -171,59 +293,17 @@
           </if>
         </foreach>
       </trim>
-      <trim prefix="user_name = case" suffix="end,">
+      <trim prefix="user_group_name = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
-          <if test="item.userName != null">
-            when id = #{item.id,jdbcType=BIGINT} then #{item.userName,jdbcType=VARCHAR}
+          <if test="item.userGroupName != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.userGroupName,jdbcType=VARCHAR}
           </if>
         </foreach>
       </trim>
-      <trim prefix="telephone = case" suffix="end,">
+      <trim prefix="user_group_code = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
-          <if test="item.telephone != null">
-            when id = #{item.id,jdbcType=BIGINT} then #{item.telephone,jdbcType=VARCHAR}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="login_name = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.loginName != null">
-            when id = #{item.id,jdbcType=BIGINT} then #{item.loginName,jdbcType=VARCHAR}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="email_address = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.emailAddress != null">
-            when id = #{item.id,jdbcType=BIGINT} then #{item.emailAddress,jdbcType=VARCHAR}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="user_type = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.userType != null">
-            when id = #{item.id,jdbcType=BIGINT} then #{item.userType,jdbcType=VARCHAR}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="`password` = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.password != null">
-            when id = #{item.id,jdbcType=BIGINT} then #{item.password,jdbcType=VARCHAR}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="salt = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.salt != null">
-            when id = #{item.id,jdbcType=BIGINT} then #{item.salt,jdbcType=VARCHAR}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="`status` = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.status != null">
-            when id = #{item.id,jdbcType=BIGINT} then #{item.status,jdbcType=VARCHAR}
+          <if test="item.userGroupCode != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.userGroupCode,jdbcType=VARCHAR}
           </if>
         </foreach>
       </trim>
@@ -234,6 +314,13 @@
           </if>
         </foreach>
       </trim>
+      <trim prefix="principal = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.principal != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.principal,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
     </trim>
     where id in
     <foreach close=")" collection="list" item="item" open="(" separator=", ">
@@ -241,24 +328,21 @@
     </foreach>
   </update>
   <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
-    <!--@mbg.generated generated on Fri Oct 30 00:52:50 CST 2020.-->
-    insert into study_user
+    <!--@mbg.generated-->
+    insert into study_user_group
     (create_name, create_id, create_time, update_name, update_id, update_time, lock_version, 
-      user_name, telephone, login_name, email_address, user_type, `password`, salt, `status`, 
-      description)
+      user_group_name, user_group_code, description, principal)
     values
     <foreach collection="list" item="item" separator=",">
       (#{item.createName,jdbcType=VARCHAR}, #{item.createId,jdbcType=BIGINT}, #{item.createTime,jdbcType=TIMESTAMP}, 
         #{item.updateName,jdbcType=VARCHAR}, #{item.updateId,jdbcType=BIGINT}, #{item.updateTime,jdbcType=TIMESTAMP}, 
-        #{item.lockVersion,jdbcType=INTEGER}, #{item.userName,jdbcType=VARCHAR}, #{item.telephone,jdbcType=VARCHAR}, 
-        #{item.loginName,jdbcType=VARCHAR}, #{item.emailAddress,jdbcType=VARCHAR}, #{item.userType,jdbcType=VARCHAR}, 
-        #{item.password,jdbcType=VARCHAR}, #{item.salt,jdbcType=VARCHAR}, #{item.status,jdbcType=VARCHAR}, 
-        #{item.description,jdbcType=VARCHAR})
+        #{item.lockVersion,jdbcType=INTEGER}, #{item.userGroupName,jdbcType=VARCHAR}, #{item.userGroupCode,jdbcType=VARCHAR}, 
+        #{item.description,jdbcType=VARCHAR}, #{item.principal,jdbcType=VARCHAR})
     </foreach>
   </insert>
-  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.chenyi.study.model.user.User" useGeneratedKeys="true">
-    <!--@mbg.generated generated on Fri Oct 30 00:52:50 CST 2020.-->
-    insert into study_user
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.chenyi.study.model.user.UserGroup" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into study_user_group
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
@@ -270,15 +354,10 @@
       update_id,
       update_time,
       lock_version,
-      user_name,
-      telephone,
-      login_name,
-      email_address,
-      user_type,
-      `password`,
-      salt,
-      `status`,
+      user_group_name,
+      user_group_code,
       description,
+      principal,
     </trim>
     values
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -292,15 +371,10 @@
       #{updateId,jdbcType=BIGINT},
       #{updateTime,jdbcType=TIMESTAMP},
       #{lockVersion,jdbcType=INTEGER},
-      #{userName,jdbcType=VARCHAR},
-      #{telephone,jdbcType=VARCHAR},
-      #{loginName,jdbcType=VARCHAR},
-      #{emailAddress,jdbcType=VARCHAR},
-      #{userType,jdbcType=VARCHAR},
-      #{password,jdbcType=VARCHAR},
-      #{salt,jdbcType=VARCHAR},
-      #{status,jdbcType=VARCHAR},
+      #{userGroupName,jdbcType=VARCHAR},
+      #{userGroupCode,jdbcType=VARCHAR},
       #{description,jdbcType=VARCHAR},
+      #{principal,jdbcType=VARCHAR},
     </trim>
     on duplicate key update 
     <trim suffixOverrides=",">
@@ -314,20 +388,15 @@
       update_id = #{updateId,jdbcType=BIGINT},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       lock_version = #{lockVersion,jdbcType=INTEGER},
-      user_name = #{userName,jdbcType=VARCHAR},
-      telephone = #{telephone,jdbcType=VARCHAR},
-      login_name = #{loginName,jdbcType=VARCHAR},
-      email_address = #{emailAddress,jdbcType=VARCHAR},
-      user_type = #{userType,jdbcType=VARCHAR},
-      `password` = #{password,jdbcType=VARCHAR},
-      salt = #{salt,jdbcType=VARCHAR},
-      `status` = #{status,jdbcType=VARCHAR},
+      user_group_name = #{userGroupName,jdbcType=VARCHAR},
+      user_group_code = #{userGroupCode,jdbcType=VARCHAR},
       description = #{description,jdbcType=VARCHAR},
+      principal = #{principal,jdbcType=VARCHAR},
     </trim>
   </insert>
-  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.chenyi.study.model.user.User" useGeneratedKeys="true">
-    <!--@mbg.generated generated on Fri Oct 30 00:52:50 CST 2020.-->
-    insert into study_user
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.chenyi.study.model.user.UserGroup" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into study_user_group
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
@@ -353,32 +422,17 @@
       <if test="lockVersion != null">
         lock_version,
       </if>
-      <if test="userName != null and userName != ''">
-        user_name,
+      <if test="userGroupName != null and userGroupName != ''">
+        user_group_name,
       </if>
-      <if test="telephone != null and telephone != ''">
-        telephone,
-      </if>
-      <if test="loginName != null and loginName != ''">
-        login_name,
-      </if>
-      <if test="emailAddress != null and emailAddress != ''">
-        email_address,
-      </if>
-      <if test="userType != null and userType != ''">
-        user_type,
-      </if>
-      <if test="password != null and password != ''">
-        `password`,
-      </if>
-      <if test="salt != null and salt != ''">
-        salt,
-      </if>
-      <if test="status != null and status != ''">
-        `status`,
+      <if test="userGroupCode != null and userGroupCode != ''">
+        user_group_code,
       </if>
       <if test="description != null and description != ''">
         description,
+      </if>
+      <if test="principal != null and principal != ''">
+        principal,
       </if>
     </trim>
     values
@@ -407,32 +461,17 @@
       <if test="lockVersion != null">
         #{lockVersion,jdbcType=INTEGER},
       </if>
-      <if test="userName != null and userName != ''">
-        #{userName,jdbcType=VARCHAR},
+      <if test="userGroupName != null and userGroupName != ''">
+        #{userGroupName,jdbcType=VARCHAR},
       </if>
-      <if test="telephone != null and telephone != ''">
-        #{telephone,jdbcType=VARCHAR},
-      </if>
-      <if test="loginName != null and loginName != ''">
-        #{loginName,jdbcType=VARCHAR},
-      </if>
-      <if test="emailAddress != null and emailAddress != ''">
-        #{emailAddress,jdbcType=VARCHAR},
-      </if>
-      <if test="userType != null and userType != ''">
-        #{userType,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null and password != ''">
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="salt != null and salt != ''">
-        #{salt,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null and status != ''">
-        #{status,jdbcType=VARCHAR},
+      <if test="userGroupCode != null and userGroupCode != ''">
+        #{userGroupCode,jdbcType=VARCHAR},
       </if>
       <if test="description != null and description != ''">
         #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="principal != null and principal != ''">
+        #{principal,jdbcType=VARCHAR},
       </if>
     </trim>
     on duplicate key update 
@@ -461,41 +500,18 @@
       <if test="lockVersion != null">
         lock_version = #{lockVersion,jdbcType=INTEGER},
       </if>
-      <if test="userName != null and userName != ''">
-        user_name = #{userName,jdbcType=VARCHAR},
+      <if test="userGroupName != null and userGroupName != ''">
+        user_group_name = #{userGroupName,jdbcType=VARCHAR},
       </if>
-      <if test="telephone != null and telephone != ''">
-        telephone = #{telephone,jdbcType=VARCHAR},
-      </if>
-      <if test="loginName != null and loginName != ''">
-        login_name = #{loginName,jdbcType=VARCHAR},
-      </if>
-      <if test="emailAddress != null and emailAddress != ''">
-        email_address = #{emailAddress,jdbcType=VARCHAR},
-      </if>
-      <if test="userType != null and userType != ''">
-        user_type = #{userType,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null and password != ''">
-        `password` = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="salt != null and salt != ''">
-        salt = #{salt,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null and status != ''">
-        `status` = #{status,jdbcType=VARCHAR},
+      <if test="userGroupCode != null and userGroupCode != ''">
+        user_group_code = #{userGroupCode,jdbcType=VARCHAR},
       </if>
       <if test="description != null and description != ''">
         description = #{description,jdbcType=VARCHAR},
       </if>
+      <if test="principal != null and principal != ''">
+        principal = #{principal,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
-
-<!--auto generated by MybatisCodeHelper on 2020-11-01-->
-  <select id="findByLoginName" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List"/>
-    from study_user
-    where login_name=#{loginName,jdbcType=VARCHAR}
-  </select>
 </mapper>

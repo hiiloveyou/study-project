@@ -5,12 +5,14 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Table;
 
 /**
  * study_user
  */
 @Data
+@Entity
 @EqualsAndHashCode(callSuper = true)
 @Table(name = "study_user")
 public class User extends BaseModel {

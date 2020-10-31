@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface UserService {
 
+    void insert(User user);
 
     int updateBatch(List<User> list);
 
@@ -16,5 +17,9 @@ public interface UserService {
     int insertOrUpdate(User record);
 
     int insertOrUpdateSelective(User record);
+
+
+    User findByLoginName(String loginName);
+
 
 }
