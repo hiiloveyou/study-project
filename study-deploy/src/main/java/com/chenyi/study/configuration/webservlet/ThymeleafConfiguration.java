@@ -1,4 +1,4 @@
-package com.chenyi.study.webservlet;
+package com.chenyi.study.configuration.webservlet;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,9 +20,12 @@ public class ThymeleafConfiguration {
     @Bean
     public ITemplateResolver templateResolver() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
-        templateResolver.setPrefix("/templates");
+        //此处需要配置类路径
+        templateResolver.setPrefix("classpath:/templates/");
         templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode(TemplateMode.HTML);
+        templateResolver.setCacheable(false);
+        templateResolver.setCharacterEncoding("utf-8");
         return templateResolver;
     }
 
@@ -51,4 +54,5 @@ public class ThymeleafConfiguration {
         thymeleafViewResolver.setTemplateEngine(springTemplateEngine);
         return thymeleafViewResolver;
     }
+
 }

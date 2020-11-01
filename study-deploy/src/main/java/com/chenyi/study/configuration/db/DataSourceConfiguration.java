@@ -1,4 +1,4 @@
-package com.chenyi.study.configuration;
+package com.chenyi.study.configuration.db;
 
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
 import org.apache.ibatis.session.SqlSessionFactory;

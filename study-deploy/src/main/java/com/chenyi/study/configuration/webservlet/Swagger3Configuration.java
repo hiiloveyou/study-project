@@ -1,4 +1,4 @@
-package com.chenyi.study.webservlet;
+package com.chenyi.study.configuration.webservlet;
 
 import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;

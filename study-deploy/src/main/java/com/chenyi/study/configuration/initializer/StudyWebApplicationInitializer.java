@@ -1,14 +1,14 @@
-package com.chenyi.study.initializer;
+package com.chenyi.study.configuration.initializer;
 
 import com.chenyi.study.StudyUtilApplication;
-import com.chenyi.study.configuration.DataSourceConfiguration;
-import org.springframework.context.annotation.Configuration;
+import com.chenyi.study.configuration.db.DataSourceConfiguration;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 /**
  * WebMvcConfigurer的实现子类
  */
-@Configuration
+@Component
 public class StudyWebApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override

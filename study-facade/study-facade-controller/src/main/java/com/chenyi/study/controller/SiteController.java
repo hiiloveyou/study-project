@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.ArrayList;
 
 @Controller
+@RequestMapping(value = "/test")
 public class SiteController {
 
     @RequestMapping("/hello")
@@ -19,4 +20,12 @@ public class SiteController {
         model.addAttribute("articleList", list);
         return "index";
     }
+
+
+    @RequestMapping("/view")
+    public String view(Model model) {
+        model.addAttribute("exception", "list");
+        return "error";
+    }
+
 }
