@@ -6,11 +6,14 @@ import com.chenyi.study.model.user.User;
 import com.chenyi.study.service.user.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.UUID;
 
 @Api(tags = "用户页面API说明")
@@ -41,4 +44,13 @@ public class AjaxUserController {
         user.setDescription(userBO.getDescription());
         userService.insert(user);
     }
+
+    @ApiOperation(value = "上传文件")
+    @PostMapping(value = "/upload")
+    public void uploadFile(@RequestPart @ApiParam(value = "文件") MultipartFile file) throws IOException {
+        System.out.println(file.getOriginalFilename());
+        System.out.println(new String(file.getBytes(), "utf-8"));
+    }
+
+
 }
