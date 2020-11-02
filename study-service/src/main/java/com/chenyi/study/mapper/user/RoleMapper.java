@@ -1,12 +1,13 @@
 package com.chenyi.study.mapper.user;
 
 import com.chenyi.study.model.user.Role;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-@Mapper
+/**
+ * @author BG344144
+ */
 public interface RoleMapper extends tk.mybatis.mapper.common.Mapper<Role> {
     int updateBatch(List<Role> list);
 
