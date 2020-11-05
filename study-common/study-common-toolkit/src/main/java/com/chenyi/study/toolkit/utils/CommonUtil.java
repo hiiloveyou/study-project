@@ -13,4 +13,6 @@ public class CommonUtil {
     //Google Guava
 //    Joda Time
 //    https://blog.csdn.net/zzti_erlie/article/details/100849192
+    public static void main(String[] args) {
+    }
 }
