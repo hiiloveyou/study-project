@@ -40,11 +40,10 @@ import java.util.Scanner;
  * @author chenyi
  * @date 2020/11/2
  */
-public class StudyFile {
+public class StudyIO {
 
-    private int num = 0;
     private static final String pathName = "/Users/chenyi/Desktop/study-util/file/test.txt";
-    private static Log log = LogFactory.getLog(StudyFile.class);
+    private static Log log = LogFactory.getLog(StudyIO.class);
 
     public static void main(String[] args) throws Exception {
 //        testFile();
@@ -349,6 +348,7 @@ public class StudyFile {
     }
 
 }
+
 
 class T
         implements Serializable {
