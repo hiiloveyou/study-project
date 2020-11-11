@@ -1,9 +1,14 @@
 package com.chenyi.study.toolkit.utils;
 
 import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.nio.channels.SeekableByteChannel;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 
 /**
  * NIO2
@@ -32,7 +37,16 @@ public class StudyNIO2 {
      * Files
      */
     private static void file() throws IOException {
-        final long size = Files.size(Paths.get("."));
-        System.out.println(size);
+        final Path path = Paths.get("/Users/chenyi/Desktop/study-util/file/paths.txt");
+        if (!Files.exists(path)) {
+            Files.createFile(path);
+        }
+        final SeekableByteChannel seekableByteChannel = Files.newByteChannel(path, StandardOpenOption.WRITE);
+
+        final CharBuffer charBuffer = CharBuffer.allocate(256);
+        charBuffer.put("hello world");
+        charBuffer.flip();
+        final ByteBuffer byteBufferEncode = StandardCharsets.UTF_8.encode(charBuffer);
+        seekableByteChannel.write(byteBufferEncode);
     }
 }
