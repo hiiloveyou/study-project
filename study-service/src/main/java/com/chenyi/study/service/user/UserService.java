@@ -3,6 +3,7 @@ package com.chenyi.study.service.user;
 import com.chenyi.study.model.user.User;
 
 import java.util.List;
+import java.util.Set;
 
 public interface UserService {
 
@@ -20,6 +21,22 @@ public interface UserService {
 
 
     User findByLoginName(String loginName);
+
+    /**
+     * 查询用户所有角色
+     *
+     * @param loginName
+     * @return
+     */
+    Set<String> findRolesByLoginName(String loginName);
+
+    /**
+     * 查询用户所有权限
+     *
+     * @param loginName
+     * @return
+     */
+    Set<String> findPermissionsByLoginName(String loginName);
 
 
 }

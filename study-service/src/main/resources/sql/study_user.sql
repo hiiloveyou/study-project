@@ -67,12 +67,11 @@ CREATE TABLE study_organization_role_relation
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT 'study_organization_role_relation';
 
-
--- auto Generated on 2020-10-30
--- DROP TABLE IF EXISTS permission;
+-- auto Generated on 2020-11-14
+DROP TABLE IF EXISTS study_permission;
 CREATE TABLE study_permission
 (
-    id              BIGINT(15)         NOT NULL AUTO_INCREMENT COMMENT 'id',
+    id              BIGINT(15) UNIQUE  NOT NULL AUTO_INCREMENT COMMENT 'id',
     create_name     VARCHAR(50) COMMENT 'createName',
     create_id       BIGINT(15) COMMENT 'createId',
     create_time     DATETIME COMMENT 'createTime',
@@ -87,16 +86,17 @@ CREATE TABLE study_permission
     `path`          VARCHAR(50)        NOT NULL COMMENT 'path',
     parent_id       BIGINT(15)         NOT NULL COMMENT 'parentId',
     sort_index      INT(11)            NOT NULL COMMENT 'sortIndex',
+    description     VARCHAR(50) COMMENT 'description',
     INDEX (url),
     INDEX (permission_type),
     INDEX (permission_name),
     INDEX (permission_code),
     INDEX (path),
     INDEX (parent_id),
+    INDEX (sort_index),
     PRIMARY KEY (id)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT 'permission';
-
 
 -- auto Generated on 2020-10-30
 -- DROP TABLE IF EXISTS study_role;
@@ -180,7 +180,7 @@ CREATE TABLE study_user_group_relation
 
 
 -- auto Generated on 2020-10-30
--- DROP TABLE IF EXISTS userstudy__organization_relation;
+-- DROP TABLE IF EXISTS study__organization_relation;
 CREATE TABLE study_user_organization_relation
 (
     id              BIGINT(15) NOT NULL AUTO_INCREMENT COMMENT 'id',
@@ -202,7 +202,7 @@ CREATE TABLE study_user_organization_relation
 
 -- auto Generated on 2020-10-30
 -- DROP TABLE IF EXISTS user_role_relation;
-CREATE TABLE user_role_relation
+CREATE TABLE study_user_role_relation
 (
     id           BIGINT(15) NOT NULL AUTO_INCREMENT COMMENT 'id',
     create_name  VARCHAR(50) COMMENT 'createName',

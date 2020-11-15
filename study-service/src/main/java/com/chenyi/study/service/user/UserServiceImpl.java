@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -48,4 +49,13 @@ public class UserServiceImpl implements UserService {
         return userMapper.findByLoginName(loginName);
     }
 
+    @Override
+    public Set<String> findRolesByLoginName(String loginName) {
+        return userMapper.findRolesByLoginName(loginName);
+    }
+
+    @Override
+    public Set<String> findPermissionsByLoginName(String loginName) {
+        return userMapper.findPermissionsByLoginName(loginName);
+    }
 }

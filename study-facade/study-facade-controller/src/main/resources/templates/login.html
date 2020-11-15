@@ -9,17 +9,19 @@
 <body>
 <div id="login-box">
     <h1>Login</h1>
-    <div class="form">
-        <div class="item">
-            <i class="fa fa-user" aria-hidden="true"></i>
-            <input type="text" placeholder="Username">
+    <form th:action="@{/login/executeLogin}" method="post">
+        <div class="form">
+            <div class="item">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <input id="username" name="username" type="text" placeholder="Username">
+            </div>
+            <div class="item">
+                <i class="fa fa-key" aria-hidden="true"></i>
+                <input id="password" name="password" type="password" placeholder="Password">
+            </div>
         </div>
-        <div class="item">
-            <i class="fa fa-key" aria-hidden="true"></i>
-            <input type="password" placeholder="Password">
-        </div>
-    </div>
-    <button>Login</button>
+        <button type="submit">Login</button>
+    </form>
 </div>
 </body>
 </html>

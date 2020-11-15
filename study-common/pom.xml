@@ -19,10 +19,4 @@
         <module>study-common-test</module>
     </modules>
 
-    <dependencies>
-
-    </dependencies>
-
-    <build>
-    </build>
 </project>

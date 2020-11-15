@@ -4,6 +4,7 @@ import com.chenyi.study.model.user.User;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author BG344144
@@ -20,6 +21,22 @@ public interface UserMapper extends tk.mybatis.mapper.common.Mapper<User> {
     int insertOrUpdateSelective(User record);
 
     User findByLoginName(@Param("loginName") String loginName);
+
+    /**
+     * 查询用户所有角色
+     *
+     * @param loginName
+     * @return
+     */
+    Set<String> findRolesByLoginName(@Param("loginName") String loginName);
+
+    /**
+     * 查询用户所有权限
+     *
+     * @param loginName
+     * @return
+     */
+    Set<String> findPermissionsByLoginName(@Param("loginName") String loginName);
 
 
 }

@@ -1,4 +1,4 @@
-package com.chenyi.study.controller.shiro;
+package com.chenyi.study.controller.shiroconfiguration;
 
 import org.apache.shiro.authc.*;
 import org.apache.shiro.realm.Realm;
