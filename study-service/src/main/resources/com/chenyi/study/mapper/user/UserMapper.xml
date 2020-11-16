@@ -506,7 +506,7 @@
     </select>
 
     <select id="findRolesByLoginName" resultType="java.lang.String">
-        select *
+        select r.role_name
         from study_role r
                      left join study_user_role_relation urr on r.id = urr.role_id
                      left join study_user u on urr.user_id = u.id
@@ -514,7 +514,7 @@
     </select>
 
     <select id="findPermissionsByLoginName" resultType="java.lang.String">
-        select *
+        select p.permission_code
         from study_permission p
                      left join study_role_permission_relation rpr on p.id = rpr.permission_id
                      left join study_role r on rpr.role_id = r.id

@@ -1,13 +1,18 @@
 package com.chenyi.study.controller.shiroconfiguration;
 
 
+import com.chenyi.study.model.user.User;
+import com.chenyi.study.service.user.UserService;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.ExcessiveAttemptsException;
+import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheManager;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -16,6 +21,8 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher {
     private final Cache<String, AtomicInteger> passwordRetryCache;
+    @Autowired
+    private UserService userService;
 
     public RetryLimitHashedCredentialsMatcher(CacheManager cacheManager) {
         passwordRetryCache = cacheManager.getCache("passwordRetryCache");
@@ -23,22 +30,31 @@ public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher
 
     @Override
     public boolean doCredentialsMatch(AuthenticationToken token, AuthenticationInfo info) {
-        String username = (String) token.getPrincipal();
+        String loginName = (String) token.getPrincipal();
         //retry count + 1
-        AtomicInteger retryCount = passwordRetryCache.get(username);
+        AtomicInteger retryCount = passwordRetryCache.get(loginName);
         if (retryCount == null) {
             retryCount = new AtomicInteger(0);
-            passwordRetryCache.put(username, retryCount);
+            passwordRetryCache.put(loginName, retryCount);
         }
         if (retryCount.incrementAndGet() > 5) {
             //if retry count > 5 throw
             throw new ExcessiveAttemptsException();
         }
 
+        final String password = new String((char[]) token.getCredentials());
+
+        final User user = userService.findByLoginName(loginName);
+        //校验密码
+        if (!Objects.equals(user.getPassword(), password)) {
+            throw new IncorrectCredentialsException("账号或密码错误，请重试");
+        }
+
+
         boolean matches = super.doCredentialsMatch(token, info);
         if (matches) {
             //clear retry count
-            passwordRetryCache.remove(username);
+            passwordRetryCache.remove(loginName);
         }
         return true;
     }

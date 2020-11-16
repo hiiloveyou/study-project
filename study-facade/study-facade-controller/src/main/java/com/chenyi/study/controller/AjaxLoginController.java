@@ -1,6 +1,8 @@
 package com.chenyi.study.controller;
 
 import com.chenyi.study.controller.bo.UserBO;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +20,11 @@ public class AjaxLoginController {
 
     @PostMapping(value = "/executeLogin")
     public String executeLogin() {
-        return "index";
+        final Subject subject = SecurityUtils.getSubject();
+        if (!subject.isAuthenticated()) {
+            return "login";
+        }
+        return "redirect:/test/hello";
     }
 
     @GetMapping(value = "/success")

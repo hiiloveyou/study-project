@@ -21,12 +21,15 @@
             <a class="navbar-brand" href="#">STUDY_UTIL</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-            <form class="navbar-form navbar-right">
+            <form class="navbar-form navbar-right" th:action="@{/user/findByLoginName}" method="get">
+                <!--                <div class="form-group">-->
+                <!--                    <input type="text" placeholder="Email" class="form-control">-->
+                <!--                </div>-->
+                <!--                <div class="form-group">-->
+                <!--                    <input type="password" placeholder="Password" class="form-control">-->
+                <!--                </div>-->
                 <div class="form-group">
-                    <input type="text" placeholder="Email" class="form-control">
-                </div>
-                <div class="form-group">
-                    <input type="password" placeholder="Password" class="form-control">
+                    <input id="loginName" type="text" name="loginName" placeholder="loginName" class="form-control">
                 </div>
                 <button type="submit" class="btn btn-success">Sign in</button>
             </form>

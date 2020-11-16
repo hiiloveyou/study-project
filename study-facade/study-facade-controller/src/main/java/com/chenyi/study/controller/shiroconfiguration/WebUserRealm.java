@@ -30,9 +30,8 @@ public class WebUserRealm extends AuthorizingRealm {
         //获取用户角色
         final Set<String> roles = userService.findRolesByLoginName(loginName);
         simpleAuthorizationInfo.setRoles(roles);
+        simpleAuthorizationInfo.setStringPermissions(userService.findPermissionsByLoginName(loginName));
         //获取用户权限
-        final Set<String> permissions = userService.findPermissionsByLoginName(loginName);
-        simpleAuthorizationInfo.setStringPermissions(permissions);
         return simpleAuthorizationInfo;
     }
 

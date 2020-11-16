@@ -2,6 +2,7 @@ package com.chenyi.study.controller;
 
 import com.chenyi.study.controller.bo.UserBO;
 import com.chenyi.study.model.Article;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,8 +11,9 @@ import java.util.ArrayList;
 
 @Controller
 @RequestMapping(value = "/test")
-public class SiteController {
+public class AjaxSiteController {
 
+    @RequiresPermissions("USER:LIST")
     @RequestMapping("/hello")
     public String index(UserBO userBO, Model model) {
         ArrayList<Article> list = new ArrayList<>();

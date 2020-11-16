@@ -8,6 +8,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,6 +24,7 @@ import java.util.UUID;
 public class AjaxUserController {
     private final UserService userService;
 
+    @RequiresPermissions("USER:LIST")
     @ApiOperation(value = "根据用户登陆名查询用户信息", notes = "用户登陆名", tags = "1.0.0")
     @GetMapping(value = "/findByLoginName")
     public User findByUserName(@Validated @RequestParam String loginName) {

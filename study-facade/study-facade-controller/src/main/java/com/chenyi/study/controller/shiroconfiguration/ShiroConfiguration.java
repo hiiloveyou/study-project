@@ -1,5 +1,6 @@
 package com.chenyi.study.controller.shiroconfiguration;
 
+import com.chenyi.study.controller.shiroconfiguration.shirofilter.WebUserFormAuthenticationFilter;
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.mgt.DefaultSecurityManager;
@@ -14,13 +15,16 @@ import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
+import org.apache.shiro.web.filter.authc.UserFilter;
 import org.apache.shiro.web.filter.mgt.DefaultFilter;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
+import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.beans.factory.config.MethodInvokingFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Lazy;
 
 import javax.servlet.Filter;
@@ -189,29 +193,31 @@ public class ShiroConfiguration {
         filterChainDefinitionMap.put("/css/**", DefaultFilter.anon.name());
         filterChainDefinitionMap.put("/js/**", DefaultFilter.anon.name());
         filterChainDefinitionMap.put("/pictures/**", DefaultFilter.anon.name());
-        filterChainDefinitionMap.put("/templates/***", DefaultFilter.anon.name());
-        filterChainDefinitionMap.put("/font-awesome-4.7.0/***", DefaultFilter.anon.name());
-        filterChainDefinitionMap.put("/login/**", DefaultFilter.anon.name());
-        filterChainDefinitionMap.put("/test/**", DefaultFilter.user.name());
-        filterChainDefinitionMap.put("/index.html", DefaultFilter.anon.name());
-        filterChainDefinitionMap.put("/login.html", "anon");
-        filterChainDefinitionMap.put("/login.jsp", DefaultFilter.authc.name());
-        filterChainDefinitionMap.put("/logout.html", "anon");
-        filterChainDefinitionMap.put("/unauthorized.html", "anon");
+        filterChainDefinitionMap.put("/templates/**", DefaultFilter.anon.name());
+        filterChainDefinitionMap.put("/font-awesome-4.7.0/**", DefaultFilter.anon.name());
+        filterChainDefinitionMap.put("/login/loginPage/**", DefaultFilter.anon.name());
+        //用户登陆地址，需要拦截
+        filterChainDefinitionMap.put("/login/executeLogin", "form");
+        filterChainDefinitionMap.put("/test/**", DefaultFilter.anon.name());
         filterChainDefinitionMap.put("/**", "user");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
-
+        //配置拦截器，自定义拦截器名称需要和上面的拦截器路径配置的拦截器名称一致
         final Map<String, Filter> filterMap = new HashMap<>();
-        filterMap.put("authc", formAuthenticationFilter());
+        filterMap.put("form", formAuthenticationFilter());
+        filterMap.put("user", userFilter());
         shiroFilterFactoryBean.setFilters(filterMap);
-
 
         return shiroFilterFactoryBean;
     }
 
     @Bean
+    public UserFilter userFilter() {
+        return new UserFilter();
+    }
+
+    @Bean
     public FormAuthenticationFilter formAuthenticationFilter() {
-        final FormAuthenticationFilter formAuthenticationFilter = new FormAuthenticationFilter();
+        final FormAuthenticationFilter formAuthenticationFilter = new WebUserFormAuthenticationFilter();
         formAuthenticationFilter.setUsernameParam("username");
         formAuthenticationFilter.setPasswordParam("password");
         formAuthenticationFilter.setLoginUrl("/login/executeLogin");
@@ -223,6 +229,14 @@ public class ShiroConfiguration {
         final AuthorizationAttributeSourceAdvisor advisor = new AuthorizationAttributeSourceAdvisor();
         advisor.setSecurityManager(defaultWebSecurityManager);
         return advisor;
+    }
+
+    @DependsOn("lifecycleBeanPostProcessor")
+    @Bean
+    public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
+        DefaultAdvisorAutoProxyCreator proxyCreator = new DefaultAdvisorAutoProxyCreator();
+        proxyCreator.setProxyTargetClass(true);
+        return proxyCreator;
     }
 
 }
