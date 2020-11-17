@@ -51,11 +51,11 @@ public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher
         }
 
 
-        boolean matches = super.doCredentialsMatch(token, info);
-        if (matches) {
-            //clear retry count
-            passwordRetryCache.remove(loginName);
-        }
+//        boolean matches = super.doCredentialsMatch(token, info);
+//        if (matches) {
+//            //clear retry count
+//            passwordRetryCache.remove(loginName);
+//        }
         return true;
     }
 }

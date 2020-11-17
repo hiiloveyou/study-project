@@ -47,7 +47,7 @@
 }
 
 body {
-    background: url(../pictures/login1.jpg);
+    background: url(/static/pictures/login1.jpg);
     background-repeat: no-repeat;
     background-size: 100% auto;
 }

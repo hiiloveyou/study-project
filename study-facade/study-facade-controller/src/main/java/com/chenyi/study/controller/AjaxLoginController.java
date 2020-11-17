@@ -5,26 +5,29 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping(value = "/login")
 public class AjaxLoginController {
 
-    @GetMapping(value = "/loginPage")
+    @RequestMapping({"/", "/index"})
+    public String index() {
+        return "/index";
+    }
+
+    @RequestMapping(value = "/login")
     public String login() {
+        final Subject subject = SecurityUtils.getSubject();
+        if (subject.isAuthenticated()) {
+            return "index";
+        }
         return "login";
     }
 
-    @PostMapping(value = "/executeLogin")
-    public String executeLogin() {
-        final Subject subject = SecurityUtils.getSubject();
-        if (!subject.isAuthenticated()) {
-            return "login";
-        }
-        return "redirect:/test/hello";
+    @RequestMapping("/403")
+    public String unauthorizedRole() {
+        return "403";
     }
 
     @GetMapping(value = "/success")
@@ -33,6 +36,5 @@ public class AjaxLoginController {
         model.addFlashAttribute(userBO);
         return "redirect:/test/hello";
     }
-
 
 }

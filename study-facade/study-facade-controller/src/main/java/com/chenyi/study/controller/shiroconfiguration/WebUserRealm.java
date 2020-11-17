@@ -52,6 +52,6 @@ public class WebUserRealm extends AuthorizingRealm {
         //交给AuthenticatingRealm使用CredentialsMatcher进行密码匹配
         //credentialSalt = loginName+salt
         return new SimpleAuthenticationInfo(user.getLoginName(), user.getPassword(),
-                ByteSource.Util.bytes(user.getLoginName() + user.getSalt()), getName());
+                ByteSource.Util.bytes(user.getCredentialSalt()), getName());
     }
 }

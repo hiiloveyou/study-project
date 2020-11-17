@@ -69,4 +69,11 @@ public class User extends BaseModel {
      */
     @Column(name = "description")
     private String description;
+
+    /**
+     * 用户的盐=salt+loginName
+     */
+    public String getCredentialSalt() {
+        return loginName + salt;
+    }
 }

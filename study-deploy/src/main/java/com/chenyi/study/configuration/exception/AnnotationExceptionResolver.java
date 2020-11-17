@@ -19,7 +19,7 @@ public class AnnotationExceptionResolver {
     public ModelAndView exceptionResolver(HttpServletRequest request, HttpServletResponse response,
                                           Object handler, Exception ex) {
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("error/error");
+        mv.setViewName("/main/resources/templates/error.html");
         mv.addObject("status", response.getStatus());
         mv.addObject("url", request.getRequestURL());
         mv.addObject("exception", ex.getMessage());

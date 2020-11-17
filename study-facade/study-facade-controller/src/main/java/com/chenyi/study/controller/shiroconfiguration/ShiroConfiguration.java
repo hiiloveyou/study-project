@@ -1,6 +1,5 @@
 package com.chenyi.study.controller.shiroconfiguration;
 
-import com.chenyi.study.controller.shiroconfiguration.shirofilter.WebUserFormAuthenticationFilter;
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.mgt.DefaultSecurityManager;
@@ -14,9 +13,6 @@ import org.apache.shiro.session.mgt.quartz.QuartzSessionValidationScheduler;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
-import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
-import org.apache.shiro.web.filter.authc.UserFilter;
-import org.apache.shiro.web.filter.mgt.DefaultFilter;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
@@ -27,8 +23,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Lazy;
 
-import javax.servlet.Filter;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -44,7 +38,6 @@ public class ShiroConfiguration {
         final RetryLimitHashedCredentialsMatcher credentialsMatcher = new RetryLimitHashedCredentialsMatcher(cacheManager);
         credentialsMatcher.setHashAlgorithmName("md5");
         credentialsMatcher.setHashIterations(2);
-        credentialsMatcher.setStoredCredentialsHexEncoded(false);
         return credentialsMatcher;
     }
 
@@ -130,22 +123,11 @@ public class ShiroConfiguration {
 
 
     @Bean
-    public DefaultWebSecurityManager defaultSecurityManager(WebUserRealm webUserRealm,
-                                                            CacheManager cacheManager,
+    public DefaultWebSecurityManager defaultSecurityManager(WebUserRealm webUserRealm, CacheManager cacheManager,
                                                             DefaultWebSessionManager defaultWebSessionManager) {
         final DefaultWebSecurityManager defaultSecurityManager = new DefaultWebSecurityManager();
         //设置realm
         defaultSecurityManager.setRealm(webUserRealm);
-        //设置authenticator
-//        final ModularRealmAuthenticator modularRealmAuthenticator = new ModularRealmAuthenticator();
-//        modularRealmAuthenticator.setAuthenticationStrategy(new AtLeastOneSuccessfulStrategy());
-//        defaultSecurityManager.setAuthenticator(modularRealmAuthenticator);
-
-        //设置authorizer
-//        final ModularRealmAuthorizer modularRealmAuthorizer = new ModularRealmAuthorizer();
-//        modularRealmAuthorizer.setPermissionResolver(new WildcardPermissionResolver());
-//        defaultSecurityManager.setAuthorizer(modularRealmAuthorizer);
-
         //设置缓存器
         defaultSecurityManager.setCacheManager(cacheManager);
         //设置会话管理器
@@ -184,45 +166,43 @@ public class ShiroConfiguration {
     @Bean
     public ShiroFilterFactoryBean shiroFilterFactoryBean(DefaultWebSecurityManager defaultWebSecurityManager) {
         final ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
-        shiroFilterFactoryBean.setLoginUrl("/login/loginPage");
-        shiroFilterFactoryBean.setUnauthorizedUrl("/logout");
-        shiroFilterFactoryBean.setSuccessUrl("/test/hello");
+        shiroFilterFactoryBean.setLoginUrl("/login");
+        shiroFilterFactoryBean.setSuccessUrl("/index");
+        shiroFilterFactoryBean.setUnauthorizedUrl("/403");
         shiroFilterFactoryBean.setSecurityManager(defaultWebSecurityManager);
         //DefaultFilter枚举定义默认Filter
         final Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
-        filterChainDefinitionMap.put("/css/**", DefaultFilter.anon.name());
-        filterChainDefinitionMap.put("/js/**", DefaultFilter.anon.name());
-        filterChainDefinitionMap.put("/pictures/**", DefaultFilter.anon.name());
-        filterChainDefinitionMap.put("/templates/**", DefaultFilter.anon.name());
-        filterChainDefinitionMap.put("/font-awesome-4.7.0/**", DefaultFilter.anon.name());
-        filterChainDefinitionMap.put("/login/loginPage/**", DefaultFilter.anon.name());
+//        filterChainDefinitionMap.put("/templates/**", DefaultFilter.anon.name());
+//        filterChainDefinitionMap.put("/login/loginPage/**", DefaultFilter.anon.name());
         //用户登陆地址，需要拦截
-        filterChainDefinitionMap.put("/login/executeLogin", "form");
-        filterChainDefinitionMap.put("/test/**", DefaultFilter.anon.name());
-        filterChainDefinitionMap.put("/**", "user");
+//        filterChainDefinitionMap.put("/login/executeLogin", "form");
+        filterChainDefinitionMap.put("/static/**", "anon");
+        filterChainDefinitionMap.put("/logout", "logout");
+        filterChainDefinitionMap.put("/**", "authc");
+//        filterChainDefinitionMap.put("/test/**", DefaultFilter.anon.name());
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         //配置拦截器，自定义拦截器名称需要和上面的拦截器路径配置的拦截器名称一致
-        final Map<String, Filter> filterMap = new HashMap<>();
-        filterMap.put("form", formAuthenticationFilter());
-        filterMap.put("user", userFilter());
-        shiroFilterFactoryBean.setFilters(filterMap);
+//        final Map<String, Filter> filterMap = new HashMap<>();
+//        filterMap.put("form", formAuthenticationFilter());
+//        filterMap.put("user", userFilter());
+//        shiroFilterFactoryBean.setFilters(filterMap);
 
         return shiroFilterFactoryBean;
     }
 
-    @Bean
-    public UserFilter userFilter() {
-        return new UserFilter();
-    }
-
-    @Bean
-    public FormAuthenticationFilter formAuthenticationFilter() {
-        final FormAuthenticationFilter formAuthenticationFilter = new WebUserFormAuthenticationFilter();
-        formAuthenticationFilter.setUsernameParam("username");
-        formAuthenticationFilter.setPasswordParam("password");
-        formAuthenticationFilter.setLoginUrl("/login/executeLogin");
-        return formAuthenticationFilter;
-    }
+//    @Bean
+//    public UserFilter userFilter() {
+//        return new UserFilter();
+//    }
+//
+//    @Bean
+//    public FormAuthenticationFilter formAuthenticationFilter() {
+//        final FormAuthenticationFilter formAuthenticationFilter = new WebUserFormAuthenticationFilter();
+//        formAuthenticationFilter.setUsernameParam("username");
+//        formAuthenticationFilter.setPasswordParam("password");
+//        formAuthenticationFilter.setLoginUrl("/login/executeLogin");
+//        return formAuthenticationFilter;
+//    }
 
     @Bean
     public AuthorizationAttributeSourceAdvisor advisor(DefaultWebSecurityManager defaultWebSecurityManager) {
