@@ -13,14 +13,14 @@ public class AjaxLoginController {
 
     @RequestMapping({"/", "/index"})
     public String index() {
-        return "/index";
+        return "/index1";
     }
 
     @RequestMapping(value = "/login")
     public String login() {
         final Subject subject = SecurityUtils.getSubject();
         if (subject.isAuthenticated()) {
-            return "index";
+            return "index1";
         }
         return "login";
     }
