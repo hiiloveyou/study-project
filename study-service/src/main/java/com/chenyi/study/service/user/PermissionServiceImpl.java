@@ -2,9 +2,12 @@ package com.chenyi.study.service.user;
 
 import com.chenyi.study.mapper.user.PermissionMapper;
 import com.chenyi.study.model.user.Permission;
+import com.chenyi.study.vo.PermissionVO;
+import com.chenyi.study.vo.SysPermissionVo;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -48,6 +51,12 @@ public class PermissionServiceImpl implements PermissionService {
     }
 
     @Override
+    public Permission insertAndSelectByPrimaryKey(Permission record) {
+        final int insert = permissionMapper.insert(record);
+        return permissionMapper.selectByPrimaryKey((long) insert);
+    }
+
+    @Override
     public int updateByPrimaryKeySelective(Permission record) {
         return permissionMapper.updateByPrimaryKeySelective(record);
     }
@@ -72,5 +81,26 @@ public class PermissionServiceImpl implements PermissionService {
         return permissionMapper.batchInsert(list);
     }
 
+    @Override
+    public List<SysPermissionVo> findAll() {
+        final List<PermissionVO> permissionVOList = permissionMapper.findAll();
+        List<SysPermissionVo> listVo = new ArrayList<>();
+
+        SysPermissionVo root = new SysPermissionVo();
+        root.setId(0);
+        root.setParent("#");
+        root.setText("资源根节点");
+        root.setState(true);
+        listVo.add(root);
+        for (PermissionVO permissionVO : permissionVOList) {
+            SysPermissionVo VO = new SysPermissionVo();
+            VO.setId(permissionVO.getId().intValue());
+            VO.setParent(permissionVO.getParentId() + "");
+            VO.setText(permissionVO.getPermissionName());
+            VO.setState(true);
+            listVo.add(VO);
+        }
+        return listVo;
+    }
 }
 

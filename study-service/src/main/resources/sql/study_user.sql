@@ -17,7 +17,7 @@ CREATE TABLE study_user
     user_type     VARCHAR(50) COMMENT '用户类型',
     `password`    VARCHAR(50) COMMENT '密码',
     salt          VARCHAR(50) UNIQUE COMMENT '用户盐值',
-    `status`      VARCHAR(50) COMMENT '用户当前状态',
+    `status`      TINYINT(1) COMMENT '用户当前状态',
     description   VARCHAR(50) COMMENT '用户描述',
     INDEX (user_name),
     INDEX (telephone),

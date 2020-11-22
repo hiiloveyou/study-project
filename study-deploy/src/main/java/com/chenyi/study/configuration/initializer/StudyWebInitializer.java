@@ -1,7 +1,6 @@
 package com.chenyi.study.configuration.initializer;
 
 import com.chenyi.study.StudyUtilApplication;
-import org.springframework.stereotype.Component;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
@@ -14,7 +13,7 @@ import javax.servlet.ServletRegistration;
  * springboot也实现了该类，参考 SpringBootServletInitializer
  * 使用外置的tomcat需要添加的启动项，替换 web.xml文件
  */
-@Component
+//@Component
 public class StudyWebInitializer implements WebApplicationInitializer {
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {

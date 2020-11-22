@@ -1,6 +1,7 @@
 package com.chenyi.study.mapper.user;
 
 import com.chenyi.study.model.user.Permission;
+import com.chenyi.study.vo.PermissionVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -67,4 +68,14 @@ public interface PermissionMapper {
     int updateBatchSelective(List<Permission> list);
 
     int batchInsert(@Param("list") List<Permission> list);
+
+    /**
+     * 根据角色查询权限
+     *
+     * @param roleId
+     * @return
+     */
+    List<PermissionVO> findVOByRoleId(@Param("roleId") Long roleId);
+
+    List<PermissionVO> findAll();
 }

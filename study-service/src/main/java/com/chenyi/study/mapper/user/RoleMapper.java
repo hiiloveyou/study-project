@@ -1,6 +1,7 @@
 package com.chenyi.study.mapper.user;
 
 import com.chenyi.study.model.user.Role;
+import com.chenyi.study.vo.RoleVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -18,4 +19,6 @@ public interface RoleMapper extends tk.mybatis.mapper.common.Mapper<Role> {
     int insertOrUpdate(Role record);
 
     int insertOrUpdateSelective(Role record);
+
+    List<RoleVO> findVOByUserId(@Param("userId") Long userId);
 }

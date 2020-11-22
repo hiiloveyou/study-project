@@ -1,6 +1,7 @@
 package com.chenyi.study.service.user;
 
 import com.chenyi.study.model.user.Permission;
+import com.chenyi.study.vo.SysPermissionVo;
 
 import java.util.List;
 
@@ -9,7 +10,6 @@ import java.util.List;
  * @date 2020/11/14
  */
 public interface PermissionService {
-
 
     int deleteByPrimaryKey(Long id);
 
@@ -23,6 +23,8 @@ public interface PermissionService {
 
     Permission selectByPrimaryKey(Long id);
 
+    Permission insertAndSelectByPrimaryKey(Permission record);
+
     int updateByPrimaryKeySelective(Permission record);
 
     int updateByPrimaryKey(Permission record);
@@ -32,6 +34,8 @@ public interface PermissionService {
     int updateBatchSelective(List<Permission> list);
 
     int batchInsert(List<Permission> list);
+
+    List<SysPermissionVo> findAll();
 
 }
 

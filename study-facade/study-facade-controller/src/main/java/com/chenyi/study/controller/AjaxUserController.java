@@ -1,7 +1,7 @@
 package com.chenyi.study.controller;
 
 
-import com.chenyi.study.controller.bo.UserBO;
+import com.chenyi.study.bo.UserBO;
 import com.chenyi.study.model.user.User;
 import com.chenyi.study.service.user.UserService;
 import io.swagger.annotations.Api;
@@ -42,7 +42,7 @@ public class AjaxUserController {
         user.setUserType(userBO.getUserType());
         user.setPassword(userBO.getPassword());
         user.setSalt(UUID.randomUUID().toString());
-        user.setStatus("ENABLE");
+        user.setStatus(1);
         user.setDescription(userBO.getDescription());
         userService.insert(user);
     }

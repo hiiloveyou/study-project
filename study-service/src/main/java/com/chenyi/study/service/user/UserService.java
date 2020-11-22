@@ -1,6 +1,7 @@
 package com.chenyi.study.service.user;
 
 import com.chenyi.study.model.user.User;
+import com.chenyi.study.vo.UserVO;
 
 import java.util.List;
 import java.util.Set;
@@ -37,6 +38,14 @@ public interface UserService {
      * @return
      */
     Set<String> findPermissionsByLoginName(String loginName);
+
+    /**
+     * 查询登陆用户的角色权限信息
+     *
+     * @param loginName
+     * @return
+     */
+    UserVO findUserVOByLoginName(String loginName);
 
 
 }

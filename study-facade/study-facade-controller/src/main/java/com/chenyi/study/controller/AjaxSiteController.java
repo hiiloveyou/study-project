@@ -1,6 +1,6 @@
 package com.chenyi.study.controller;
 
-import com.chenyi.study.controller.bo.UserBO;
+import com.chenyi.study.bo.UserBO;
 import com.chenyi.study.model.Article;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
@@ -28,7 +28,7 @@ public class AjaxSiteController {
     @RequestMapping("/view")
     public String view(Model model) {
         model.addAttribute("exception", "list");
-        return "error";
+        return "/base/error";
     }
 
 }

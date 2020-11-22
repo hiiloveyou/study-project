@@ -380,7 +380,7 @@
             <if test="salt != null and salt != ''">
                 salt,
             </if>
-            <if test="status != null and status != ''">
+            <if test="status != null ">
                 `status`,
             </if>
             <if test="description != null and description != ''">
@@ -434,7 +434,7 @@
             <if test="salt != null and salt != ''">
                 #{salt,jdbcType=VARCHAR},
             </if>
-            <if test="status != null and status != ''">
+            <if test="status != null ">
                 #{status,jdbcType=VARCHAR},
             </if>
             <if test="description != null and description != ''">
@@ -488,7 +488,7 @@
             <if test="salt != null and salt != ''">
                 salt = #{salt,jdbcType=VARCHAR},
             </if>
-            <if test="status != null and status != ''">
+            <if test="status != null ">
                 `status` = #{status,jdbcType=VARCHAR},
             </if>
             <if test="description != null and description != ''">
