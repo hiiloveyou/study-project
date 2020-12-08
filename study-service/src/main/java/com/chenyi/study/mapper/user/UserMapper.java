@@ -9,7 +9,9 @@ import java.util.Set;
 /**
  * @author BG344144
  */
-public interface UserMapper extends tk.mybatis.mapper.common.Mapper<User> {
+public interface UserMapper
+//        extends tk.mybatis.mapper.common.Mapper<User>
+{
     int updateBatch(List<User> list);
 
     int updateBatchSelective(List<User> list);

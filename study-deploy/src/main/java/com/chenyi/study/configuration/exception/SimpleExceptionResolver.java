@@ -1,6 +1,7 @@
 package com.chenyi.study.configuration.exception;
 
 
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 
@@ -12,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @see AnnotationExceptionResolver 注解的异常
  */
-//@Component
+@Component
 public class SimpleExceptionResolver extends SimpleMappingExceptionResolver {
 
     @Override

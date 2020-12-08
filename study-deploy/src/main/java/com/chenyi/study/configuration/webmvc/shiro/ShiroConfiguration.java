@@ -179,6 +179,7 @@ public class ShiroConfiguration {
         filterChainDefinitionMap.put("/images/**", DefaultFilter.anon.name());
         filterChainDefinitionMap.put("/js/**", DefaultFilter.anon.name());
         filterChainDefinitionMap.put("/base/**", DefaultFilter.anon.name());
+        filterChainDefinitionMap.put("/test/**", DefaultFilter.anon.name());
 //        filterChainDefinitionMap.put("/login/**", DefaultFilter.anon.name());
         //其他过滤器
         filterChainDefinitionMap.put("/login/logout", DefaultFilter.logout.name());

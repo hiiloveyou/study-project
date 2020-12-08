@@ -9,7 +9,9 @@ import java.util.List;
 /**
  * @author BG344144
  */
-public interface RoleMapper extends tk.mybatis.mapper.common.Mapper<Role> {
+public interface RoleMapper
+//        extends tk.mybatis.mapper.common.Mapper<Role>
+{
     int updateBatch(List<Role> list);
 
     int updateBatchSelective(List<Role> list);

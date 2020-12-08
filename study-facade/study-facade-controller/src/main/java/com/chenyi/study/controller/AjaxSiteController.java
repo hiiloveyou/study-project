@@ -2,16 +2,25 @@ package com.chenyi.study.controller;
 
 import com.chenyi.study.bo.UserBO;
 import com.chenyi.study.model.Article;
+import com.chenyi.study.model.user.User;
+import com.chenyi.study.service.user.UserService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.stereotype.Controller;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.UUID;
 
-@Controller
+@RestController
 @RequestMapping(value = "/test")
 public class AjaxSiteController {
+    @Autowired
+    private UserService userService;
 
     @RequiresPermissions("USER:LIST")
     @RequestMapping("/hello")
@@ -31,4 +40,18 @@ public class AjaxSiteController {
         return "/base/error";
     }
 
+    @PostMapping(value = "/transaction")
+    public void testTransaction(@RequestBody @Valid UserBO userBO) {
+        User user = new User();
+        user.setUserName(userBO.getUserName());
+        user.setTelephone(userBO.getTelephone());
+        user.setLoginName(userBO.getLoginName());
+        user.setEmailAddress(userBO.getEmailAddress());
+        user.setUserType(userBO.getUserType());
+        user.setPassword(userBO.getPassword());
+        user.setSalt(UUID.randomUUID().toString());
+        user.setStatus(1);
+        user.setDescription(userBO.getDescription());
+        userService.insert(user);
+    }
 }

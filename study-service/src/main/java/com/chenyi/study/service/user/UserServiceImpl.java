@@ -3,13 +3,16 @@ package com.chenyi.study.service.user;
 import com.chenyi.study.mapper.user.PermissionMapper;
 import com.chenyi.study.mapper.user.RoleMapper;
 import com.chenyi.study.mapper.user.UserMapper;
+import com.chenyi.study.model.user.Role;
 import com.chenyi.study.model.user.User;
 import com.chenyi.study.vo.RoleVO;
 import com.chenyi.study.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -19,10 +22,20 @@ public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
     private final RoleMapper roleMapper;
     private final PermissionMapper permissionMapper;
+    private final RoleService roleService;
+
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void insert(User user) {
-        userMapper.insert(user);
+        userMapper.insertOrUpdate(user);
+        final Role role = new Role();
+        role.setRoleName("testRole");
+        role.setStatus("1");
+        final List<Role> roles = new ArrayList<>();
+        roles.add(role);
+        roleService.batchInsert(roles);
+//        userMapper.insert(user);
     }
 
     @Override

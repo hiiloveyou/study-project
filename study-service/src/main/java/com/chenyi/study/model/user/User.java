@@ -4,13 +4,11 @@ import com.chenyi.study.toolkit.baseinfo.BaseModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.persistence.Entity;
-
 /**
  * study_user
  */
 @Data
-@Entity
+//@Entity
 @EqualsAndHashCode(callSuper = true)
 public class User extends BaseModel {
     /**
