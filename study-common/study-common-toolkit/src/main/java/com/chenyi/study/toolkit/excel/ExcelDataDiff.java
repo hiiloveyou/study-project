@@ -12,10 +12,22 @@ import java.util.List;
  */
 public class ExcelDataDiff {
 
-    public static void main(String[] args) {
-        final ExcelReader excelReader = ExcelUtil.getReader(
-                "C:\\Users\\bg344144\\Desktop\\版本开发\\单品库Saas化\\版本分析文件\\店群商品合同商品.xlsx",1);
+    public static void main(String[] args) throws Exception {
+        readExcel();
+    }
 
-        final List<List<Object>> read = excelReader.read();
+    private static void readExcel() {
+        final ExcelReader excelReader = ExcelUtil.getReader("file/库存初始化导入模板.xlsx", 0);
+
+        excelReader.addHeaderAlias("仓库编码*", "warehouseCode");
+        excelReader.addHeaderAlias("商品编码*", "skuCode");
+        excelReader.addHeaderAlias("商品名称", "skuName");
+        excelReader.addHeaderAlias("初始化库存单位*", "quantifier");
+        excelReader.addHeaderAlias("初始化库存数量*", "quantity");
+        excelReader.addHeaderAlias("初始化库存成本单价*", "price");
+        excelReader.addHeaderAlias("初始化商品效期*", "productionDate");
+
+        final List<Inventory> read = excelReader.readAll(Inventory.class);
+        System.out.println("read = " + read);
     }
 }
