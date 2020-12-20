@@ -3,38 +3,60 @@ package com.chenyi.study.service.user;
 import com.chenyi.study.mapper.user.PermissionMapper;
 import com.chenyi.study.mapper.user.RoleMapper;
 import com.chenyi.study.mapper.user.UserMapper;
-import com.chenyi.study.model.user.Role;
 import com.chenyi.study.model.user.User;
 import com.chenyi.study.vo.RoleVO;
 import com.chenyi.study.vo.UserVO;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
+    private static final String USER_INFO = "userInfo";
+
     private final UserMapper userMapper;
     private final RoleMapper roleMapper;
     private final PermissionMapper permissionMapper;
-    private final RoleService roleService;
+
+//    @Resource(name = "redisTemplate")
+//    private final HashOperations hashOperations;
+
+    // inject the actual template
+//    @Autowired
+//    private RedisTemplate<String, String> template;
+
+    // inject the template as ListOperations
+//    @Resource(name="redisTemplate")
+//    private ListOperations<String, String> listOps;
 
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void insert(User user) {
         userMapper.insertOrUpdate(user);
-        final Role role = new Role();
-        role.setRoleName("testRole");
-        role.setStatus("1");
-        final List<Role> roles = new ArrayList<>();
-        roles.add(role);
-        roleService.batchInsert(roles);
+
+//        redisTemplate.execute(RedisConnection::stringCommands);
+
+//        hashOperations.put(USER_INFO, user.getLoginName(), user);
+
+
+//        final User redisCacheUserInfo = (User) hashOperations.get(USER_INFO, user.getLoginName());
+//        log.info("redisCacheUserInfo is {}", redisCacheUserInfo);
+//        redisTemplate.exec()
+
+//        final Role role = new Role();
+//        role.setRoleName("testRole");
+//        role.setStatus("1");
+//        final List<Role> roles = new ArrayList<>();
+//        roles.add(role);
+//        roleService.batchInsert(roles);
 //        userMapper.insert(user);
     }
 
@@ -65,6 +87,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findByLoginName(String loginName) {
+
         return userMapper.findByLoginName(loginName);
     }
 
