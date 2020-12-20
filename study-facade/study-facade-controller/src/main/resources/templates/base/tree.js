@@ -7,7 +7,7 @@ $(document).ready(function () {
             '	<i class="fa fa-tachometer fa-fw">' +
             '		<div class="icon-bg bg-orange"></div>' +
             '	</i>' +
-            '	<span class="menu-title">欢迎主页</span>' +
+            '	<span class="menu-title">欢迎主页----</span>' +
             '</a>' +
             '</li>';
         $.ajax({

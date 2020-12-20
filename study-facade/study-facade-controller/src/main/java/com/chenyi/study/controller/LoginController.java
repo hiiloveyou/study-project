@@ -69,7 +69,7 @@ public class LoginController extends BaseController {
     }
 
     @RequestMapping("/home")
-    public String home(HttpServletResponse response) {
+    public String home(HttpServletRequest request, HttpServletResponse response) {
         UserVO ui = this.getCurrentUser();
         if (ui == null) {
             try {
@@ -79,11 +79,16 @@ public class LoginController extends BaseController {
             }
         }
         logger.info("初始化home页面....");
-        return "/base/home";
+        HttpSession session = request.getSession();
+        Subject subject = SecurityUtils.getSubject();
+        UserVO user = (UserVO) subject.getPrincipal();
+        session.setAttribute("user", user);
+        session.setAttribute("clickId", "home");
+        return "/base/loadHome";
 
     }
 
-    @RequestMapping("/loginUser")
+    //    @RequestMapping("/loginUser")
     public String loginUser(HttpServletRequest request, String username, String password, String vcode) {
 
         HttpSession session = request.getSession();
@@ -92,11 +97,11 @@ public class LoginController extends BaseController {
         String v = (String) session.getAttribute("_code");//还可以读取一次后把验证码清空，这样每次登录都必须获取验证码;
         logger.info("获取保存vcode:" + v);
         logger.info("验证vcode:" + vcode);
-        if (!vcode.equals(v)) {
-            logger.info("对用户[" + username + "]验证码不通过");
-            request.setAttribute("message", "验证码不正确");
-            return "/base/login";//返回登录页面
-        }
+//        if (!vcode.equals(v)) {
+//            logger.info("对用户[" + username + "]验证码不通过");
+//            request.setAttribute("message", "验证码不正确");
+//            return "/base/login";//返回登录页面
+//        }
 
         logger.info("进行账号" + username + ",密码验证" + password + ".....");
         UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(username, password);

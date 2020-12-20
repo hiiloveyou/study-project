@@ -186,9 +186,9 @@ public class ShiroConfiguration {
         filterChainDefinitionMap.put("/js/**", DefaultFilter.anon.name());
         filterChainDefinitionMap.put("/base/**", DefaultFilter.anon.name());
         filterChainDefinitionMap.put("/test/**", DefaultFilter.anon.name());
-        filterChainDefinitionMap.put("/login/**", DefaultFilter.anon.name());
+//        filterChainDefinitionMap.put("/login/**", DefaultFilter.anon.name());
         //其他过滤器
-        filterChainDefinitionMap.put("/login/logout", DefaultFilter.logout.name());
+//        filterChainDefinitionMap.put("/login/logout", DefaultFilter.logout.name());
 //        filterChainDefinitionMap.put("/**", DefaultFilter.authc.name());
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         //配置拦截器，自定义拦截器名称需要和上面的拦截器路径配置的拦截器名称一致
