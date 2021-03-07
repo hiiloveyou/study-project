@@ -1,6 +1,7 @@
 package com.chenyi.study.toolkit.studycollectoin;
 
 import java.util.HashMap;
+import java.util.Hashtable;
 
 /**
  * @author chenyi
@@ -30,6 +31,9 @@ public class StudyMap {
 
         hashMap.compute("fruit", (s, s2) -> s + s2);
         System.out.println("hashMap2 = " + hashMap);
+
+
+        final Hashtable<Object, Object> objectObjectHashtable = new Hashtable<>();
 
     }
 }

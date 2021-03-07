@@ -1,4 +1,4 @@
-package com.chenyi.study.toolkit.excel;
+package com.chenyi.study.toolkit.studyexcel;
 
 import cn.hutool.poi.excel.ExcelReader;
 import cn.hutool.poi.excel.ExcelUtil;

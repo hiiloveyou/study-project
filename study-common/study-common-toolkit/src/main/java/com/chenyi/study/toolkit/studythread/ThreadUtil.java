@@ -1,4 +1,4 @@
-package com.chenyi.study.toolkit.threadtool;
+package com.chenyi.study.toolkit.studythread;
 
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicInteger;

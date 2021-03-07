@@ -1,4 +1,4 @@
-package com.chenyi.study.toolkit.path;
+package com.chenyi.study.toolkit.studypath;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
