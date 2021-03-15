@@ -1,4 +1,6 @@
-package com.chenyi.study.toolkit.studythread.studysychronized;
+package com.chenyi.study.toolkit.studythread.studythreadstate;
+
+import com.chenyi.study.toolkit.studythread.studysychronized.Account3;
 
 import java.math.BigDecimal;
 
@@ -7,12 +9,12 @@ import java.math.BigDecimal;
  * @date 2021/3/14
  * 线程处于 NEW RUNNABLE WAITING TIMED_WAITING
  */
-public class StudySynchronized3 extends Thread {
+public class StudyState2 extends Thread {
 
     private final Account3 account3;
     private final BigDecimal drawAmount;
 
-    public StudySynchronized3(String name, Account3 account3, BigDecimal drawAmount) {
+    public StudyState2(String name, Account3 account3, BigDecimal drawAmount) {
         super(name);
         this.account3 = account3;
         this.drawAmount = drawAmount;
@@ -27,7 +29,7 @@ public class StudySynchronized3 extends Thread {
         final Account3 account3 = new Account3("0001客户", BigDecimal.valueOf(1000));
         final Thread[] threads = new Thread[5];
         for (int i = 0; i < threads.length; i++) {
-            threads[i] = new StudySynchronized3("客户" + i, account3, BigDecimal.valueOf(600));
+            threads[i] = new StudyState2("客户" + i, account3, BigDecimal.valueOf(600));
         }
 
         for (int i = 0; i < 5; i++) {

@@ -7,10 +7,10 @@ import java.util.concurrent.locks.LockSupport;
  * @author chenyi
  * @date 2021/3/14
  */
-public class StudyLockObject implements Runnable {
+public class StudySynchronizedObject implements Runnable {
     private Account account;
 
-    public StudyLockObject(Account account) {
+    public StudySynchronizedObject(Account account) {
         this.account = account;
     }
 
@@ -27,17 +27,17 @@ public class StudyLockObject implements Runnable {
     }
 
     public static void main(String[] args) {
-        final StudyLockObject studyLockObject = new StudyLockObject(new Account("001", BigDecimal.ZERO));
+        final StudySynchronizedObject studySynchronizedObject = new StudySynchronizedObject(new Account("001", BigDecimal.ZERO));
 
-        final Thread threadA = new Thread(studyLockObject, "threadA");
+        final Thread threadA = new Thread(studySynchronizedObject, "threadA");
         threadA.start();
-        final Thread threadB = new Thread(studyLockObject, "threadB");
+        final Thread threadB = new Thread(studySynchronizedObject, "threadB");
         threadB.start();
 
-        LockSupport.park(1000);
+        LockSupport.park();
 
         System.out.println("threadA = " + threadA.getState());
         System.out.println("threadB = " + threadB.getState());
-        LockSupport.unpark(Thread.currentThread());
+
     }
 }

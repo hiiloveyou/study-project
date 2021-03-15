@@ -1,5 +1,9 @@
 package com.chenyi.study.toolkit.studythread.studythreadstate;
 
+import com.chenyi.study.toolkit.studythread.studysychronized.Account2;
+
+import java.math.BigDecimal;
+
 /**
  * @author chenyi
  * @date 2021/3/14
@@ -20,46 +24,47 @@ package com.chenyi.study.toolkit.studythread.studythreadstate;
  * TIMED_WAITING 超时等待 Thread.sleep，Object.wait，Thread.join，LockSupport.parkNanos，LockSupport.parkUntil
  * <p>
  * TERMINATED 线程执行完成
+ * 线程处于 NEW RUNNABLE WAITING TIMED_WAITING
  */
-public class StudyState {
+public class StudyState extends Thread {
 
-    public static void main(String[] args) {
-        final Thread.State state = Thread.currentThread().getState();
-        System.out.println("主线程状态 = " + state);
+    private final Account2 account2;
+    private final BigDecimal drawAmount;
 
-        final Thread thread = new Thread(new MyRunnable(), "线程状态");
-        System.out.println("线程初始状态 = " + thread.getState());
-
-        thread.start();
-        System.out.println("线程开始后状态 = " + thread.getState());
-
-
-        try {
-            thread.wait();
-            System.out.println("wait = " + thread.getState());
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
+    public StudyState(String name, Account2 account2, BigDecimal drawAmount) {
+        super(name);
+        this.account2 = account2;
+        this.drawAmount = drawAmount;
     }
 
-    private static class MyRunnable implements Runnable {
-        private int j;
+    @Override
+    public void run() {
+        account2.draw(drawAmount);
+    }
 
-        @Override
-        public void run() {
-            for (j = 0; j < 100; j++) {
+    public static void main(String[] args) {
+        final Account2 account2 = new Account2("0001客户", BigDecimal.valueOf(1000));
 
-                if (j == 20) {
-                    try {
-                        Thread.sleep(100);
-                        System.out.println("线程等待状态 = " + Thread.currentThread().getState());
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
+        final Thread[] threads = new Thread[5];
+
+        for (int i = 0; i < threads.length; i++) {
+            threads[i] = new StudyState("客户" + i, account2, BigDecimal.valueOf(600));
         }
+
+        for (int i = 0; i < 5; i++) {
+            try {
+                //线程睡眠后，正常扣钱
+                Thread.sleep(2);
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println(threads[i].getName() + "启动前状态" + threads[i].getState());
+            threads[i].start();
+            System.out.println(threads[i].getName() + "启动后状态" + threads[i].getState());
+        }
+
+
     }
 
 }

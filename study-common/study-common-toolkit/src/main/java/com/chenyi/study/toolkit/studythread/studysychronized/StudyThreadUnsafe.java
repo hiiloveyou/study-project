@@ -5,13 +5,13 @@ import java.math.BigDecimal;
 /**
  * @author chenyi
  * @date 2021/3/14
- * 线程不安全
+ * 线程不安全演示
  */
-public class StudySynchronized extends Thread {
+public class StudyThreadUnsafe extends Thread {
     private final Account account;
     private final BigDecimal drawAmount;
 
-    public StudySynchronized(Account account, BigDecimal drawAmount) {
+    public StudyThreadUnsafe(Account account, BigDecimal drawAmount) {
         this.account = account;
         this.drawAmount = drawAmount;
     }
@@ -32,8 +32,8 @@ public class StudySynchronized extends Thread {
         final Account account = new Account("10001号客户", BigDecimal.valueOf(1000));
 
 
-        new StudySynchronized(account, BigDecimal.valueOf(600)).start();
-        new StudySynchronized(account, BigDecimal.valueOf(600)).start();
+        new StudyThreadUnsafe(account, BigDecimal.valueOf(600)).start();
+        new StudyThreadUnsafe(account, BigDecimal.valueOf(600)).start();
 
     }
 
