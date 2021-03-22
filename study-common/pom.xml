@@ -6,7 +6,7 @@
 
     <parent>
         <groupId>com.chenyi.study</groupId>
-        <artifactId>study-util</artifactId>
+        <artifactId>study-project</artifactId>
         <version>${revision}</version>
     </parent>
 

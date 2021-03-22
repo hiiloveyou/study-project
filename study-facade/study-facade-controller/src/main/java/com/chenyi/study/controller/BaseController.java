@@ -23,7 +23,7 @@ public abstract class BaseController {
 
     protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public ModelMap getModelMap(String status, Object data, String msg) {
+    public ModelMap getModelMap(String status, java.io.Serializable data, String msg) {
         ModelMap modelMap = new ModelMap();
         modelMap.put("status", status);
         modelMap.put("data", data);

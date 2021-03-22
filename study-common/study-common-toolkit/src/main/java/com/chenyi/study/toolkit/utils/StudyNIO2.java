@@ -37,7 +37,7 @@ public class StudyNIO2 {
      * Files
      */
     private static void file() throws IOException {
-        final Path path = Paths.get("/Users/chenyi/Desktop/study-util/file/paths.txt");
+        final Path path = Paths.get("/Users/chenyi/Desktop/study-project/file/paths.txt");
         if (!Files.exists(path)) {
             Files.createFile(path);
         }

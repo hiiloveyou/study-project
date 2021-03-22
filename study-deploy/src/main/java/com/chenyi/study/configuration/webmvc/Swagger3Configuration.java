@@ -25,7 +25,7 @@ public class Swagger3Configuration {
 
     private ApiInfo buildApiInfo() {
         return new ApiInfoBuilder()
-                .title("study-util api在线文档")
+                .title("study-project api在线文档")
                 .description("提供API访问服务")
                 .version("1.0.0")
                 .build();

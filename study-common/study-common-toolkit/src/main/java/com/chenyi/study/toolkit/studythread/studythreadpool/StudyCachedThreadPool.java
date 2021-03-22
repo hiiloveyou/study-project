@@ -1,5 +1,7 @@
 package com.chenyi.study.toolkit.studythread.studythreadpool;
 
+import cn.hutool.core.thread.NamedThreadFactory;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -21,7 +23,7 @@ public class StudyCachedThreadPool {
         //相当于队列已满了
         final ExecutorService executorService = new ThreadPoolExecutor(0, 120,
                 60L, TimeUnit.SECONDS,
-                new SynchronousQueue<Runnable>());
+                new SynchronousQueue<Runnable>(), new NamedThreadFactory("执行缓存线程", false));
 
 
         for (int i = 0; i < 100; i++) {

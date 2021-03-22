@@ -146,11 +146,11 @@ public class StudyNIO {
     private static void fileChannel() {
         try (
                 final FileInputStream fileInputStream = new FileInputStream(
-                        "/Users/chenyi/IdeaProjects/study-util/study-common/study-common-toolkit" +
+                        "/Users/chenyi/IdeaProjects/study-project/study-common/study-common-toolkit" +
                                 "/src/main/java/com/chenyi/study/toolkit/utils/StudyIO.java");
                 final FileChannel fileInputStreamChannel = fileInputStream.getChannel();
                 final FileOutputStream fileOutputStream = new FileOutputStream(
-                        "/Users/chenyi/Desktop/study-util/file/channelOut.txt");
+                        "/Users/chenyi/Desktop/study-project/file/channelOut.txt");
                 final FileChannel fileOutputStreamChannel = fileOutputStream.getChannel();
         ) {
             final int length = fileInputStream.available();
@@ -167,11 +167,11 @@ public class StudyNIO {
     private static void fileChannelRepeat() {
         try (
                 final FileInputStream fileInputStream = new FileInputStream(
-                        "/Users/chenyi/IdeaProjects/study-util/study-common/study-common-toolkit" +
+                        "/Users/chenyi/IdeaProjects/study-project/study-common/study-common-toolkit" +
                                 "/src/main/java/com/chenyi/study/toolkit/utils/StudyIO.java");
                 final FileChannel fileInputStreamChannel = fileInputStream.getChannel();
                 final FileOutputStream fileOutputStream = new FileOutputStream(
-                        "/Users/chenyi/Desktop/study-util/file/channelOutRepeat.txt");
+                        "/Users/chenyi/Desktop/study-project/file/channelOutRepeat.txt");
                 final FileChannel fileOutputStreamChannel = fileOutputStream.getChannel();
         ) {
             final int length = fileInputStream.available();

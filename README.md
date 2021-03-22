@@ -1,4 +1,4 @@
-# study-util
+# study-project
 
 a study project and verify some problems
 

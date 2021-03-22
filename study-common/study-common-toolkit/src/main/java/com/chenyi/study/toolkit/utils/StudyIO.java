@@ -42,7 +42,7 @@ import java.util.Scanner;
  */
 public class StudyIO {
 
-    private static final String pathName = "/Users/chenyi/Desktop/study-util/file/test.txt";
+    private static final String pathName = "/Users/chenyi/Desktop/study-project/file/test.txt";
     private static Log log = LogFactory.getLog(StudyIO.class);
 
     public static void main(String[] args) throws Exception {
@@ -82,7 +82,7 @@ public class StudyIO {
                 "classpath:file/parent/child/childFile.txt");
         System.out.println("file1 = " + file1.getParent());
 
-        File file3 = new File(URI.create("file:/Users/chenyi/Desktop/study-util/login1.jpg"));
+        File file3 = new File(URI.create("file:/Users/chenyi/Desktop/study-project/login1.jpg"));
         System.out.println("isDirectory = " + file3.isDirectory());
         System.out.println("isFile = " + file3.isFile());
         System.out.println("getParent = " + file3.getParent());
@@ -102,7 +102,7 @@ public class StudyIO {
         try (
                 FileInputStream fileInputStream = new FileInputStream(file);
                 FileOutputStream fileOutputStream = new FileOutputStream(new File(
-                        URI.create("file:/Users/chenyi/Desktop/study-util/file/fileOut.txt")), true)) {
+                        URI.create("file:/Users/chenyi/Desktop/study-project/file/fileOut.txt")), true)) {
             while ((b = fileInputStream.read()) != -1) {
                 fileOutputStream.write(b);
             }
@@ -119,9 +119,9 @@ public class StudyIO {
     private static void fileInputOutputStreamBytes() {
         int b;
         try (FileInputStream fileInputStream = new FileInputStream(new File(
-                URI.create("file:/Users/chenyi/Desktop/study-util/file/out.txt")));
+                URI.create("file:/Users/chenyi/Desktop/study-project/file/out.txt")));
              FileOutputStream fileOutputStream = new FileOutputStream(new File(
-                     URI.create("file:/Users/chenyi/Desktop/study-util/file/fileOutByte.txt")), false)) {
+                     URI.create("file:/Users/chenyi/Desktop/study-project/file/fileOutByte.txt")), false)) {
 
             byte[] bytes = new byte[1024];
             while ((b = fileInputStream.read(bytes, 0, 1024)) != -1) {
@@ -159,9 +159,9 @@ public class StudyIO {
     private static void bufferedInputOutputStream() {
         int b;
         try (FileInputStream fileInputStream = new FileInputStream(new File(
-                URI.create("file:/Users/chenyi/Desktop/study-util/file/test.txt")));
+                URI.create("file:/Users/chenyi/Desktop/study-project/file/test.txt")));
              FileOutputStream fileOutputStream = new FileOutputStream(new File(
-                     URI.create("file:/Users/chenyi/Desktop/study-util/file/bufferedOut.txt")), false);
+                     URI.create("file:/Users/chenyi/Desktop/study-project/file/bufferedOut.txt")), false);
              BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
              final BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream)
         ) {
@@ -183,9 +183,9 @@ public class StudyIO {
     private static void fileReaderWriter() {
         int b;
         try (FileReader fileReader = new FileReader(new File(
-                URI.create("file:/Users/chenyi/Desktop/study-util/file/test.txt")));
+                URI.create("file:/Users/chenyi/Desktop/study-project/file/test.txt")));
              FileWriter fileWriter = new FileWriter(new File(
-                     URI.create("file:/Users/chenyi/Desktop/study-util/file/writerOut.txt")), false);
+                     URI.create("file:/Users/chenyi/Desktop/study-project/file/writerOut.txt")), false);
              BufferedReader bufferedReader = new BufferedReader(fileReader);
              final BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
         ) {
@@ -214,9 +214,9 @@ public class StudyIO {
     private static void fileStreamToChar() {
         int b;
         try (FileInputStream fileInputStream = new FileInputStream(new File(
-                URI.create("file:/Users/chenyi/Desktop/study-util/file/test.txt")));
+                URI.create("file:/Users/chenyi/Desktop/study-project/file/test.txt")));
              FileOutputStream fileOutputStream = new FileOutputStream(new File(
-                     URI.create("file:/Users/chenyi/Desktop/study-util/file/StreamToCharOut.txt")), false);
+                     URI.create("file:/Users/chenyi/Desktop/study-project/file/StreamToCharOut.txt")), false);
              BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
              final BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream);
              final InputStreamReader inputStreamReader = new InputStreamReader(bufferedInputStream);
@@ -291,7 +291,7 @@ public class StudyIO {
      */
     private static void printStream() throws Exception {
         final PrintStream printStream =
-                new PrintStream("/Users/chenyi/Desktop/study-util/file/printOut.dat");
+                new PrintStream("/Users/chenyi/Desktop/study-project/file/printOut.dat");
         //替换标准输出
         System.setOut(printStream);
         //将文本打印到文件
@@ -311,7 +311,7 @@ public class StudyIO {
     private static void systemInPrintAndOut() {
         try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
              final PrintWriter printWriter = new PrintWriter(new FileWriter(
-                     "/Users/chenyi/Desktop/study-util/file/printOutBuffered.log", true));
+                     "/Users/chenyi/Desktop/study-project/file/printOutBuffered.log", true));
         ) {
             String string;
             while ((string = bufferedReader.readLine()) != null) {
