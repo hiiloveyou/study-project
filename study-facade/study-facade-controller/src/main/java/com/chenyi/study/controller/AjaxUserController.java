@@ -4,6 +4,7 @@ package com.chenyi.study.controller;
 import com.chenyi.study.bo.UserBO;
 import com.chenyi.study.model.user.User;
 import com.chenyi.study.service.user.UserService;
+import com.chenyi.study.toolkit.utils.MD5Utils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -44,6 +45,9 @@ public class AjaxUserController {
         user.setSalt(UUID.randomUUID().toString());
         user.setStatus(1);
         user.setDescription(userBO.getDescription());
+        final String encodePassword =
+                MD5Utils.encodePassword(user.getPassword(), user.getLoginName() + user.getSalt());
+        user.setPassword(encodePassword);
         userService.insert(user);
     }
 
