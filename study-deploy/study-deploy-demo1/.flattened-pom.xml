@@ -4,26 +4,28 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.chenyi.study</groupId>
-    <artifactId>study-project</artifactId>
+    <artifactId>study-deploy</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <groupId>com.chenyi.study</groupId>
-  <artifactId>study-facade</artifactId>
+  <artifactId>study-deploy-demo1</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>pom</packaging>
+  <name>study-deploy-demo1</name>
   <licenses>
     <license>
       <name>Apache License, Version 2.0</name>
       <url>https://www.apache.org/licenses/LICENSE-2.0</url>
     </license>
   </licenses>
-  <modules>
-    <module>study-facade-controller</module>
-  </modules>
+  <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
   <dependencies>
     <dependency>
       <groupId>com.chenyi.study</groupId>
-      <artifactId>study-service</artifactId>
+      <artifactId>study-starter</artifactId>
       <version>${project.version}</version>
     </dependency>
   </dependencies>

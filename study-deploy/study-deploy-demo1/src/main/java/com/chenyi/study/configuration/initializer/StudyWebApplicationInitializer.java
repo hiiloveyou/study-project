@@ -1,7 +1,6 @@
 package com.chenyi.study.configuration.initializer;
 
 import com.chenyi.study.StudyUtilApplication;
-import com.chenyi.study.configuration.db.DataSourceConfiguration;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 /**
@@ -22,6 +21,7 @@ public class StudyWebApplicationInitializer extends AbstractAnnotationConfigDisp
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class<?>[]{DataSourceConfiguration.class};
+        return null;
+//        return new Class<?>[]{DataSourceConfiguration.class};
     }
 }
