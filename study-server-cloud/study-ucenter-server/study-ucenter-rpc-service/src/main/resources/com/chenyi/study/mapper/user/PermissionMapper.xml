@@ -1,0 +1,683 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PermissionMapper">
+    <resultMap id="BaseResultMap" type="Permission">
+        <!--@mbg.generated-->
+        <!--@Table study_permission-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="create_name" jdbcType="VARCHAR" property="createName"/>
+        <result column="create_id" jdbcType="BIGINT" property="createId"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_name" jdbcType="VARCHAR" property="updateName"/>
+        <result column="update_id" jdbcType="BIGINT" property="updateId"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="lock_version" jdbcType="INTEGER" property="lockVersion"/>
+        <result column="url" jdbcType="VARCHAR" property="url"/>
+        <result column="permission_type" jdbcType="VARCHAR" property="permissionType"/>
+        <result column="permission_name" jdbcType="VARCHAR" property="permissionName"/>
+        <result column="permission_code" jdbcType="VARCHAR" property="permissionCode"/>
+        <result column="path" jdbcType="VARCHAR" property="path"/>
+        <result column="parent_id" jdbcType="BIGINT" property="parentId"/>
+        <result column="sort_index" jdbcType="INTEGER" property="sortIndex"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, create_name, create_id, create_time, update_name, update_id, update_time, lock_version,
+        url, permission_type, permission_name, permission_code, `path`, parent_id, sort_index,
+        description
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from study_permission
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete
+        from study_permission
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="Permission"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into study_permission (create_name, create_id, create_time,
+        update_name, update_id, update_time,
+        lock_version, url, permission_type,
+        permission_name, permission_code, `path`,
+        parent_id, sort_index, description)
+        values (#{createName,jdbcType=VARCHAR}, #{createId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP},
+        #{updateName,jdbcType=VARCHAR}, #{updateId,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP},
+        #{lockVersion,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, #{permissionType,jdbcType=VARCHAR},
+        #{permissionName,jdbcType=VARCHAR}, #{permissionCode,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR},
+        #{parentId,jdbcType=BIGINT}, #{sortIndex,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="Permission"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into study_permission
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="createName != null and createName != ''">
+                create_name,
+            </if>
+            <if test="createId != null">
+                create_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateName != null and updateName != ''">
+                update_name,
+            </if>
+            <if test="updateId != null">
+                update_id,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="lockVersion != null">
+                lock_version,
+            </if>
+            <if test="url != null and url != ''">
+                url,
+            </if>
+            <if test="permissionType != null and permissionType != ''">
+                permission_type,
+            </if>
+            <if test="permissionName != null and permissionName != ''">
+                permission_name,
+            </if>
+            <if test="permissionCode != null and permissionCode != ''">
+                permission_code,
+            </if>
+            <if test="path != null and path != ''">
+                `path`,
+            </if>
+            <if test="parentId != null">
+                parent_id,
+            </if>
+            <if test="sortIndex != null">
+                sort_index,
+            </if>
+            <if test="description != null and description != ''">
+                description,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="createName != null and createName != ''">
+                #{createName,jdbcType=VARCHAR},
+            </if>
+            <if test="createId != null">
+                #{createId,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateName != null and updateName != ''">
+                #{updateName,jdbcType=VARCHAR},
+            </if>
+            <if test="updateId != null">
+                #{updateId,jdbcType=BIGINT},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lockVersion != null">
+                #{lockVersion,jdbcType=INTEGER},
+            </if>
+            <if test="url != null and url != ''">
+                #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="permissionType != null and permissionType != ''">
+                #{permissionType,jdbcType=VARCHAR},
+            </if>
+            <if test="permissionName != null and permissionName != ''">
+                #{permissionName,jdbcType=VARCHAR},
+            </if>
+            <if test="permissionCode != null and permissionCode != ''">
+                #{permissionCode,jdbcType=VARCHAR},
+            </if>
+            <if test="path != null and path != ''">
+                #{path,jdbcType=VARCHAR},
+            </if>
+            <if test="parentId != null">
+                #{parentId,jdbcType=BIGINT},
+            </if>
+            <if test="sortIndex != null">
+                #{sortIndex,jdbcType=INTEGER},
+            </if>
+            <if test="description != null and description != ''">
+                #{description,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="Permission">
+        <!--@mbg.generated-->
+        update study_permission
+        <set>
+            <if test="createName != null and createName != ''">
+                create_name = #{createName,jdbcType=VARCHAR},
+            </if>
+            <if test="createId != null">
+                create_id = #{createId,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateName != null and updateName != ''">
+                update_name = #{updateName,jdbcType=VARCHAR},
+            </if>
+            <if test="updateId != null">
+                update_id = #{updateId,jdbcType=BIGINT},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lockVersion != null">
+                lock_version = #{lockVersion,jdbcType=INTEGER},
+            </if>
+            <if test="url != null and url != ''">
+                url = #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="permissionType != null and permissionType != ''">
+                permission_type = #{permissionType,jdbcType=VARCHAR},
+            </if>
+            <if test="permissionName != null and permissionName != ''">
+                permission_name = #{permissionName,jdbcType=VARCHAR},
+            </if>
+            <if test="permissionCode != null and permissionCode != ''">
+                permission_code = #{permissionCode,jdbcType=VARCHAR},
+            </if>
+            <if test="path != null and path != ''">
+                `path` = #{path,jdbcType=VARCHAR},
+            </if>
+            <if test="parentId != null">
+                parent_id = #{parentId,jdbcType=BIGINT},
+            </if>
+            <if test="sortIndex != null">
+                sort_index = #{sortIndex,jdbcType=INTEGER},
+            </if>
+            <if test="description != null and description != ''">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="Permission">
+        <!--@mbg.generated-->
+        update study_permission
+        set create_name = #{createName,jdbcType=VARCHAR},
+        create_id = #{createId,jdbcType=BIGINT},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_name = #{updateName,jdbcType=VARCHAR},
+        update_id = #{updateId,jdbcType=BIGINT},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        lock_version = #{lockVersion,jdbcType=INTEGER},
+        url = #{url,jdbcType=VARCHAR},
+        permission_type = #{permissionType,jdbcType=VARCHAR},
+        permission_name = #{permissionName,jdbcType=VARCHAR},
+        permission_code = #{permissionCode,jdbcType=VARCHAR},
+        `path` = #{path,jdbcType=VARCHAR},
+        parent_id = #{parentId,jdbcType=BIGINT},
+        sort_index = #{sortIndex,jdbcType=INTEGER},
+        description = #{description,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateBatch" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update study_permission
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="create_name = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.createName,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="create_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.createId,jdbcType=BIGINT}
+                </foreach>
+            </trim>
+            <trim prefix="create_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="update_name = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.updateName,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="update_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.updateId,jdbcType=BIGINT}
+                </foreach>
+            </trim>
+            <trim prefix="update_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="lock_version = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.lockVersion,jdbcType=INTEGER}
+                </foreach>
+            </trim>
+            <trim prefix="url = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.url,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="permission_type = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.permissionType,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="permission_name = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.permissionName,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="permission_code = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.permissionCode,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="`path` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.path,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="parent_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.parentId,jdbcType=BIGINT}
+                </foreach>
+            </trim>
+            <trim prefix="sort_index = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.sortIndex,jdbcType=INTEGER}
+                </foreach>
+            </trim>
+            <trim prefix="description = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.description,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.id,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <update id="updateBatchSelective" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update study_permission
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="create_name = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.createName != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.createName,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="create_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.createId != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.createId,jdbcType=BIGINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="create_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.createTime != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="update_name = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.updateName != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.updateName,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="update_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.updateId != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.updateId,jdbcType=BIGINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="update_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.updateTime != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="lock_version = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.lockVersion != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.lockVersion,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="url = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.url != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.url,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="permission_type = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.permissionType != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.permissionType,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="permission_name = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.permissionName != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.permissionName,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="permission_code = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.permissionCode != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.permissionCode,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="`path` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.path != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.path,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="parent_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.parentId != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.parentId,jdbcType=BIGINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="sort_index = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.sortIndex != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.sortIndex,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="description = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.description != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.description,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.id,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into study_permission
+        (create_name, create_id, create_time, update_name, update_id, update_time, lock_version,
+        url, permission_type, permission_name, permission_code, `path`, parent_id, sort_index,
+        description)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.createName,jdbcType=VARCHAR}, #{item.createId,jdbcType=BIGINT},
+            #{item.createTime,jdbcType=TIMESTAMP},
+            #{item.updateName,jdbcType=VARCHAR}, #{item.updateId,jdbcType=BIGINT},
+            #{item.updateTime,jdbcType=TIMESTAMP},
+            #{item.lockVersion,jdbcType=INTEGER}, #{item.url,jdbcType=VARCHAR},
+            #{item.permissionType,jdbcType=VARCHAR},
+            #{item.permissionName,jdbcType=VARCHAR}, #{item.permissionCode,jdbcType=VARCHAR},
+            #{item.path,jdbcType=VARCHAR}, #{item.parentId,jdbcType=BIGINT}, #{item.sortIndex,jdbcType=INTEGER},
+            #{item.description,jdbcType=VARCHAR})
+        </foreach>
+    </insert>
+    <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="Permission"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into study_permission
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            create_name,
+            create_id,
+            create_time,
+            update_name,
+            update_id,
+            update_time,
+            lock_version,
+            url,
+            permission_type,
+            permission_name,
+            permission_code,
+            `path`,
+            parent_id,
+            sort_index,
+            description,
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            #{createName,jdbcType=VARCHAR},
+            #{createId,jdbcType=BIGINT},
+            #{createTime,jdbcType=TIMESTAMP},
+            #{updateName,jdbcType=VARCHAR},
+            #{updateId,jdbcType=BIGINT},
+            #{updateTime,jdbcType=TIMESTAMP},
+            #{lockVersion,jdbcType=INTEGER},
+            #{url,jdbcType=VARCHAR},
+            #{permissionType,jdbcType=VARCHAR},
+            #{permissionName,jdbcType=VARCHAR},
+            #{permissionCode,jdbcType=VARCHAR},
+            #{path,jdbcType=VARCHAR},
+            #{parentId,jdbcType=BIGINT},
+            #{sortIndex,jdbcType=INTEGER},
+            #{description,jdbcType=VARCHAR},
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=BIGINT},
+            </if>
+            create_name = #{createName,jdbcType=VARCHAR},
+            create_id = #{createId,jdbcType=BIGINT},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            update_name = #{updateName,jdbcType=VARCHAR},
+            update_id = #{updateId,jdbcType=BIGINT},
+            update_time = #{updateTime,jdbcType=TIMESTAMP},
+            lock_version = #{lockVersion,jdbcType=INTEGER},
+            url = #{url,jdbcType=VARCHAR},
+            permission_type = #{permissionType,jdbcType=VARCHAR},
+            permission_name = #{permissionName,jdbcType=VARCHAR},
+            permission_code = #{permissionCode,jdbcType=VARCHAR},
+            `path` = #{path,jdbcType=VARCHAR},
+            parent_id = #{parentId,jdbcType=BIGINT},
+            sort_index = #{sortIndex,jdbcType=INTEGER},
+            description = #{description,jdbcType=VARCHAR},
+        </trim>
+    </insert>
+    <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id"
+            parameterType="Permission" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into study_permission
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="createName != null and createName != ''">
+                create_name,
+            </if>
+            <if test="createId != null">
+                create_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateName != null and updateName != ''">
+                update_name,
+            </if>
+            <if test="updateId != null">
+                update_id,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="lockVersion != null">
+                lock_version,
+            </if>
+            <if test="url != null and url != ''">
+                url,
+            </if>
+            <if test="permissionType != null and permissionType != ''">
+                permission_type,
+            </if>
+            <if test="permissionName != null and permissionName != ''">
+                permission_name,
+            </if>
+            <if test="permissionCode != null and permissionCode != ''">
+                permission_code,
+            </if>
+            <if test="path != null and path != ''">
+                `path`,
+            </if>
+            <if test="parentId != null">
+                parent_id,
+            </if>
+            <if test="sortIndex != null">
+                sort_index,
+            </if>
+            <if test="description != null and description != ''">
+                description,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="createName != null and createName != ''">
+                #{createName,jdbcType=VARCHAR},
+            </if>
+            <if test="createId != null">
+                #{createId,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateName != null and updateName != ''">
+                #{updateName,jdbcType=VARCHAR},
+            </if>
+            <if test="updateId != null">
+                #{updateId,jdbcType=BIGINT},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lockVersion != null">
+                #{lockVersion,jdbcType=INTEGER},
+            </if>
+            <if test="url != null and url != ''">
+                #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="permissionType != null and permissionType != ''">
+                #{permissionType,jdbcType=VARCHAR},
+            </if>
+            <if test="permissionName != null and permissionName != ''">
+                #{permissionName,jdbcType=VARCHAR},
+            </if>
+            <if test="permissionCode != null and permissionCode != ''">
+                #{permissionCode,jdbcType=VARCHAR},
+            </if>
+            <if test="path != null and path != ''">
+                #{path,jdbcType=VARCHAR},
+            </if>
+            <if test="parentId != null">
+                #{parentId,jdbcType=BIGINT},
+            </if>
+            <if test="sortIndex != null">
+                #{sortIndex,jdbcType=INTEGER},
+            </if>
+            <if test="description != null and description != ''">
+                #{description,jdbcType=VARCHAR},
+            </if>
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=BIGINT},
+            </if>
+            <if test="createName != null and createName != ''">
+                create_name = #{createName,jdbcType=VARCHAR},
+            </if>
+            <if test="createId != null">
+                create_id = #{createId,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateName != null and updateName != ''">
+                update_name = #{updateName,jdbcType=VARCHAR},
+            </if>
+            <if test="updateId != null">
+                update_id = #{updateId,jdbcType=BIGINT},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lockVersion != null">
+                lock_version = #{lockVersion,jdbcType=INTEGER},
+            </if>
+            <if test="url != null and url != ''">
+                url = #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="permissionType != null and permissionType != ''">
+                permission_type = #{permissionType,jdbcType=VARCHAR},
+            </if>
+            <if test="permissionName != null and permissionName != ''">
+                permission_name = #{permissionName,jdbcType=VARCHAR},
+            </if>
+            <if test="permissionCode != null and permissionCode != ''">
+                permission_code = #{permissionCode,jdbcType=VARCHAR},
+            </if>
+            <if test="path != null and path != ''">
+                `path` = #{path,jdbcType=VARCHAR},
+            </if>
+            <if test="parentId != null">
+                parent_id = #{parentId,jdbcType=BIGINT},
+            </if>
+            <if test="sortIndex != null">
+                sort_index = #{sortIndex,jdbcType=INTEGER},
+            </if>
+            <if test="description != null and description != ''">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="findVOByRoleId" resultType="com.chenyi.study.vo.PermissionVO">
+        select sp.*
+        from study_permission sp
+        left join study_role_permission_relation srpr on sp.id = srpr.permission_id
+        where srpr.role_id = #{roleId}
+    </select>
+
+    <select id="findAll" resultType="com.chenyi.study.vo.PermissionVO">
+        select *
+        from study_permission sp
+    </select>
+</mapper>

@@ -3,7 +3,7 @@ package com.chenyi.study.toolkit.studyexcel;
 import lombok.Data;
 
 /**
- * @author BG344144
+ * @author chenyi65536@163.com
  * @date 2020/12/8-20:15
  * @description
  */

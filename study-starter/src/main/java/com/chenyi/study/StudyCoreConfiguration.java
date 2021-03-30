@@ -4,7 +4,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @author BG344144
+ * @author chenyi65536@163.com
  * @date 2021/3/22-20:58
  * @description
  */

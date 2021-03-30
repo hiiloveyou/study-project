@@ -14,7 +14,6 @@
     </parent>
 
     <name>study-starter</name>
-    <url>http://www.example.com</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -26,9 +25,23 @@
         <dependency>
             <groupId>com.chenyi.study</groupId>
             <artifactId>study-core</artifactId>
-            <version>${project.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.chenyi.study</groupId>
+            <artifactId>study-message-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.chenyi.study</groupId>
+            <artifactId>study-redis-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.chenyi.study</groupId>
+            <artifactId>study-rpc-rest-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.chenyi.study</groupId>
+            <artifactId>study-shiro-starter</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
