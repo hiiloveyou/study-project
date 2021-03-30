@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -76,8 +77,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
     public int insertOrUpdate(User record) {
-        return userMapper.insertOrUpdate(record);
+        final int i = userMapper.insertOrUpdate(record);
+//        throw new RuntimeException("insert user error");
+         return 1;
     }
 
     @Override

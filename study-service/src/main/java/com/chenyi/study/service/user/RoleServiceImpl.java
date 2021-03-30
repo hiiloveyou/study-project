@@ -3,6 +3,8 @@ package com.chenyi.study.service.user;
 import com.chenyi.study.mapper.user.RoleMapper;
 import com.chenyi.study.model.user.Role;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -29,8 +31,11 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
     public int insertOrUpdate(Role record) {
-        return roleMapper.insertOrUpdate(record);
+        roleMapper.insertOrUpdate(record);
+        throw new RuntimeException("insert user error");
+//        return 1;
     }
 
     @Override
