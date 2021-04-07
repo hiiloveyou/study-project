@@ -1,5 +1,6 @@
 package com.chenyi.study;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -7,8 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author chenyi65536@163.com
  */
 @SpringBootApplication
-//@MapperScan(basePackages = {"com.chenyi.study.**.mapper"})
-//@EnableStudyProject
+@MapperScan(basePackages = {"com.chenyi.study.**.mapper"})
+@EnableStudyProject
 public class StudyUcenterApplication {
 
     public static void main(String[] args) {

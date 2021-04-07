@@ -1,6 +1,7 @@
-package com.chenyi.study.service.user;
+package com.chenyi.study.rpc.api.user;
 
-import com.chenyi.study.model.user.UserRole;
+
+import com.chenyi.study.ucenter.model.user.UserRole;
 
 /**
  * @author chenyi65536@163.com

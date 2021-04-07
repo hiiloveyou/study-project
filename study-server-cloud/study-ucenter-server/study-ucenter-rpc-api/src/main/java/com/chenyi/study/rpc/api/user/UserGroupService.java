@@ -1,6 +1,6 @@
-package com.chenyi.study.service.user;
+package com.chenyi.study.rpc.api.user;
 
-import com.chenyi.study.model.user.UserGroup;
+import com.chenyi.study.ucenter.model.user.UserGroup;
 
 import java.util.List;
 

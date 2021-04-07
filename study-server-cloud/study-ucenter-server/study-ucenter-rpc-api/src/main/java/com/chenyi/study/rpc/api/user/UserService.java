@@ -1,7 +1,8 @@
-package com.chenyi.study.service.user;
+package com.chenyi.study.rpc.api.user;
 
-import com.chenyi.study.model.user.User;
-import com.chenyi.study.vo.UserVO;
+
+import com.chenyi.study.rpc.api.vo.UserVO;
+import com.chenyi.study.ucenter.model.user.User;
 
 import java.util.List;
 import java.util.Set;

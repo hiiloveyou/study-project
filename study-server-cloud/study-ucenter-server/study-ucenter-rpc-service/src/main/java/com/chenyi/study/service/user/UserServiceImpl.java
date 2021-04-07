@@ -1,11 +1,12 @@
 package com.chenyi.study.service.user;
 
-import com.chenyi.study.mapper.user.PermissionMapper;
-import com.chenyi.study.mapper.user.RoleMapper;
-import com.chenyi.study.mapper.user.UserMapper;
-import com.chenyi.study.model.user.User;
-import com.chenyi.study.vo.RoleVO;
-import com.chenyi.study.vo.UserVO;
+import com.chenyi.study.rpc.api.user.UserService;
+import com.chenyi.study.rpc.api.vo.UserVO;
+import com.chenyi.study.ucenter.mapper.user.PermissionMapper;
+import com.chenyi.study.ucenter.mapper.user.RoleMapper;
+import com.chenyi.study.ucenter.mapper.user.UserMapper;
+import com.chenyi.study.ucenter.model.user.Role;
+import com.chenyi.study.ucenter.model.user.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -111,10 +112,10 @@ public class UserServiceImpl implements UserService {
         final User user = userMapper.findByLoginName(loginName);
         BeanUtils.copyProperties(user, userVO);
         //装配角色
-        final List<RoleVO> roleVOList = roleMapper.findVOByUserId(user.getId());
-        userVO.setRoleVOList(roleVOList);
+        final List<Role> roleVOList = roleMapper.findVOByUserId(user.getId());
+//        userVO.setRoleVOList(roleVOList);
         //装配权限
-        roleVOList.forEach(roleVO -> roleVO.setPermissionVOList(permissionMapper.findVOByRoleId(roleVO.getId())));
+//        roleVOList.forEach(roleVO -> roleVO.setPermissionVOList(permissionMapper.findVOByRoleId(roleVO.getId())));
         return userVO;
     }
 }

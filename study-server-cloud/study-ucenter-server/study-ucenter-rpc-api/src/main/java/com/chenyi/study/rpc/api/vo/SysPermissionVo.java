@@ -1,4 +1,4 @@
-package com.chenyi.study.vo;
+package com.chenyi.study.rpc.api.vo;
 
 import lombok.Data;
 

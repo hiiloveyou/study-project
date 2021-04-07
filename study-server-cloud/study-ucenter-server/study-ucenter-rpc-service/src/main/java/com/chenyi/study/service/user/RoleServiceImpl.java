@@ -1,7 +1,8 @@
 package com.chenyi.study.service.user;
 
-import com.chenyi.study.mapper.user.RoleMapper;
-import com.chenyi.study.model.user.Role;
+import com.chenyi.study.rpc.api.user.RoleService;
+import com.chenyi.study.ucenter.mapper.user.RoleMapper;
+import com.chenyi.study.ucenter.model.user.Role;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;

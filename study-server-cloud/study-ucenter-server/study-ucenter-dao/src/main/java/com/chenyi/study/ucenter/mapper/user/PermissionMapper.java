@@ -1,7 +1,6 @@
 package com.chenyi.study.ucenter.mapper.user;
 
-import com.chenyi.study.model.user.Permission;
-import com.chenyi.study.vo.PermissionVO;
+import com.chenyi.study.ucenter.model.user.Permission;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -75,7 +74,7 @@ public interface PermissionMapper {
      * @param roleId
      * @return
      */
-    List<PermissionVO> findVOByRoleId(@Param("roleId") Long roleId);
+    List<Permission> findVOByRoleId(@Param("roleId") Long roleId);
 
-    List<PermissionVO> findAll();
+    List<Permission> findAll();
 }

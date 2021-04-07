@@ -1,6 +1,6 @@
 package com.chenyi.study.ucenter.mapper.user;
 
-import com.chenyi.study.model.user.UserGroup;
+import com.chenyi.study.ucenter.model.user.UserGroup;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

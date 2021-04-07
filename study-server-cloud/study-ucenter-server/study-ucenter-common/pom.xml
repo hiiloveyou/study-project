@@ -22,7 +22,8 @@
     <dependencies>
         <dependency>
             <groupId>com.chenyi.study</groupId>
-            <artifactId>study-common</artifactId>
+            <artifactId>study-common-toolkit</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 

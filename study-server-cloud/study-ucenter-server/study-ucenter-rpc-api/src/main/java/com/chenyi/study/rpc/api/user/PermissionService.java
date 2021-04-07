@@ -1,7 +1,8 @@
-package com.chenyi.study.service.user;
+package com.chenyi.study.rpc.api.user;
 
-import com.chenyi.study.model.user.Permission;
-import com.chenyi.study.vo.SysPermissionVo;
+
+import com.chenyi.study.rpc.api.vo.SysPermissionVo;
+import com.chenyi.study.ucenter.model.user.Permission;
 
 import java.util.List;
 

@@ -1,6 +1,7 @@
-package com.chenyi.study.service.user;
+package com.chenyi.study.rpc.api.user;
 
-import com.chenyi.study.model.user.Role;
+
+import com.chenyi.study.ucenter.model.user.Role;
 
 import java.util.List;
 

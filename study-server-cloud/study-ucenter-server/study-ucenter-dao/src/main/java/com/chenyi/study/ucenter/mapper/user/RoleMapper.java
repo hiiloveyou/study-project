@@ -1,7 +1,6 @@
 package com.chenyi.study.ucenter.mapper.user;
 
-import com.chenyi.study.model.user.Role;
-import com.chenyi.study.vo.RoleVO;
+import com.chenyi.study.ucenter.model.user.Role;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -22,5 +21,5 @@ public interface RoleMapper
 
     int insertOrUpdateSelective(Role record);
 
-    List<RoleVO> findVOByUserId(@Param("userId") Long userId);
+    List<Role> findVOByUserId(@Param("userId") Long userId);
 }

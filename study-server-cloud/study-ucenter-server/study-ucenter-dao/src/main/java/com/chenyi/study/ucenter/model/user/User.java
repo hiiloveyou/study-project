@@ -8,7 +8,6 @@ import lombok.EqualsAndHashCode;
  * study_user
  */
 @Data
-//@Entity
 @EqualsAndHashCode(callSuper = true)
 public class User extends BaseModel {
     /**

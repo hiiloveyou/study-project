@@ -1,8 +1,5 @@
 package com.chenyi.study.shiro;
 
-import org.apache.shiro.spring.config.ShiroConfiguration;
-import org.springframework.context.annotation.Import;
-
 import java.lang.annotation.*;
 
 /**
@@ -13,6 +10,6 @@ import java.lang.annotation.*;
 @Documented
 @Target(value = ElementType.TYPE)
 @Retention(value = RetentionPolicy.RUNTIME)
-@Import(ShiroConfiguration.class)
+//@Import(ShiroConfiguration.class)
 public @interface EnableStudyShiro {
 }

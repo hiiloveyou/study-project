@@ -1,7 +1,8 @@
 package com.chenyi.study.service.user;
 
-import com.chenyi.study.mapper.user.UserGroupMapper;
-import com.chenyi.study.model.user.UserGroup;
+import com.chenyi.study.rpc.api.user.UserGroupService;
+import com.chenyi.study.ucenter.mapper.user.UserGroupMapper;
+import com.chenyi.study.ucenter.model.user.UserGroup;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

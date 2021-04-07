@@ -1,6 +1,9 @@
 package com.chenyi.study.service.user;
 
-import com.chenyi.study.model.user.UserRole;
+import com.chenyi.study.rpc.api.user.RoleService;
+import com.chenyi.study.rpc.api.user.UserProxyService;
+import com.chenyi.study.rpc.api.user.UserService;
+import com.chenyi.study.ucenter.model.user.UserRole;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
