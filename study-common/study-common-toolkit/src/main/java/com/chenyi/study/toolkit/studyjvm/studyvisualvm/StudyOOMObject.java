@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * -verbose:gc
  * -Xmx100m -Xms100m -XX:+UseSerialGC -XX:+HeapDumpOnOutOfMemoryError -Xverify:none
  */
-public class FillHeap {
+public class StudyOOMObject {
 
     static class OOMObject {
         //64KB

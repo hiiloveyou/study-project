@@ -8,8 +8,9 @@ import java.io.InputStreamReader;
  * @author chenyi
  * @date 2021/4/11
  * @desciption 发生OOM的区域主要heap，method area，jvm stack
- * <p>
- * -Xmx20M -Xms10M
+ * 堆溢出异常
+ * 参数
+ * -Xmx20M -Xms20M -XX:+HeapDumpOnOutOfMemoryError
  */
 public class StudyOOMInHeap {
     private static final int _1M = 1024 * 1024;
